@@ -9,6 +9,6 @@
 Sistema Biblioteca
 </h2>
 <p>
- Olá, Dev's! Meu nome é Jonathan (<a href="https://github.com/DevSanttos" target="_blank" rel="external">DevSanttos</a>) e, com grande prazer, venho apresentar um projeto que está sendo desenvolvido por mim e pelo <a href="https://github.com/Saigo0" target="_blank" rel="external">José Otávio</a>, programador Full Stack Developer.
+ Olá, Dev's! Meu nome é Jonathan (<a href="https://github.com/DevSanttos" target="_blank" rel="external">DevSanttos</a>) e, com grande prazer, venho apresentar um projeto que está sendo desenvolvido por mim e pelo <a href="https://github.com/Saigo0" target="_blank" rel="external">José Otávio</a>, Full Stack Developer.
 </p>
  
