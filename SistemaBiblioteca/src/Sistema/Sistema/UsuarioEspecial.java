@@ -4,8 +4,10 @@ public class UsuarioEspecial extends UsuarioSimples {
     private String nivelBeneficio;
     private String dataValidade;
 
-    public UsuarioEspecial(String nome, String RG, String CPF, String dataNascimento, String email, String endereco, String telefone, String preferencias, String nivelBeneficio, String dataValidade) {
-        super(nome, RG, CPF, dataNascimento, email, endereco, telefone, preferencias);
+    public UsuarioEspecial(String nome, String RG, String CPF, String dataNascimento, String email, String endereco,
+                           String telefone, String senha, String dataCadastro, String preferencias,
+                           String nivelBeneficio, String dataValidade) {
+        super(nome, RG, CPF, dataNascimento, email, endereco, telefone, senha, dataCadastro, preferencias);
         this.setNivelBeneficio(nivelBeneficio);
         this.setDataValidade(dataValidade);
     }

@@ -21,6 +21,7 @@ public class Livro {
         this.setNumPaginas(numPaginas);
         this.setLocalEdicao(localEdicao);
         this.setPreco(preco);
+        this.setDisponibilidade(true);
     }
 
     private void setISBN(){
@@ -104,7 +105,7 @@ public class Livro {
     }
 
     public void setDisponibilidade(boolean disponibilidade) {
-        this.disponibilidade = !this.disponibilidade;
+        this.disponibilidade = disponibilidade;
     }
 
     public boolean getDisponibilidade(){
