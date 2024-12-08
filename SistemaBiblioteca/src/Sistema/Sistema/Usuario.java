@@ -66,4 +66,5 @@ public abstract class Usuario extends Pessoa {
                 "Data de cadastro: " + this.getDataCadastro() + "\n" +
                 "Status: " + this.getStatus();
     }
+
 }

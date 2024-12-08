@@ -1,13 +1,13 @@
 package Sistema;
 
 public abstract class Pessoa {
-    private String nome;
-    private String RG;
-    private String CPF;
-    private String dataNascimento;
-    private String email;
-    private String endereco;
-    private String telefone;
+    private String nome = "";
+    private String RG = "";
+    private String CPF = "";
+    private String dataNascimento = "";
+    private String email = "";
+    private String endereco = "";
+    private String telefone = "";
 
     public Pessoa(String nome, String RG, String CPF, String dataNascimento, String email, String endereco, String telefone) {
         this.setNome(nome);

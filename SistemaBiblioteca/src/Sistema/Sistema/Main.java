@@ -12,5 +12,10 @@ public class Main {
         rel1.addDia(s.nextInt());
 
         System.out.println(rel1.getDia());
+
+        UsuarioSimples user1 = new UsuarioSimples("sdadas", "sdds", "sdsdd", "sdsdd",
+                "saddasdsa", "dassdadas", "asdasdasd", "sdsadsa");
+
+        System.out.println(user1.toString());
     }
 }
