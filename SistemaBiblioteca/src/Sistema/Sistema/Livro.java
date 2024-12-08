@@ -103,14 +103,12 @@ public class Livro {
         return this.numPaginas;
     }
 
-    public boolean setDisponibilidade(boolean disponibilidade) {
-        if (this.disponibilidade) {
-            this.disponibilidade = false;
-            return true;
-        } else {
-            this.disponibilidade = true;
-            return true;
-        }
+    public void setDisponibilidade(boolean disponibilidade) {
+        this.disponibilidade = !this.disponibilidade;
+    }
+
+    public boolean getDisponibilidade(){
+        return this.disponibilidade;
     }
 
     public boolean setPreco(double preco){
@@ -121,9 +119,19 @@ public class Livro {
             return false;
     }
 
+    public double getPreco(){
+        return this.preco;
+    }
+
     public String toString(){
         return  "ISBN: " + this.getISBN() + "\n" +
-
-
+                "Título: " + this.getTitulo() + "\n" +
+                "Autor: " + this.getAutor() + "\n" +
+                "Editora: " + this.getEditora() + "\n" +
+                "Ano de edição: " + this.getAnoEdicao() + "\n" +
+                "Número de páginas: " + this.getNumPaginas() + "\n" +
+                "Local de edição: " + this.getLocalEdicao() + "\n" +
+                "Disponibilidade: " + this.getDisponibilidade() + "\n" +
+                "Preço: " + this.getPreco();
     }
 }
