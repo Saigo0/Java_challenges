@@ -1,3 +1,7 @@
+Refinar o construtor da classe Usuario e de suas subclasses (os novos atributos e a nova classe na herança acabaram
+de ser atualizados no diagrama de classes, mas ainda falta ajustar seus construtores e métodos tanto no diagrama de
+classes, quanto na implementação do código-fonte)
+
 Continuar a implementação dos getters e setters das classes;
 
 Implementar o método aplicarDesconto() para os usuários especiais;
