@@ -1,4 +1,4 @@
-Refinar o construtor da classe Usuario e de suas subclasses (os novos atributos e a nova classe na herança de usuario acabaram
+Refinar o construtor da classe Usuario e de suas subclasses (os novos atributos e a nova classe na herança de Usuario acabaram
 de ser atualizados no diagrama de classes, mas ainda falta ajustar seus construtores, métodos e cardinalidade tanto no diagrama de
 classes, quanto na implementação do código-fonte)
 
