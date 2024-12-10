@@ -2,6 +2,7 @@ package Sistema;
 
 public class Livro {
     public static int cod = 1;
+    private int id;
     private int ISBN;
     private String titulo;
     private String autor;
@@ -13,7 +14,7 @@ public class Livro {
     private double preco;
 
     public Livro(String titulo, String autor, String editora, int anoEdicao, int numPaginas, String localEdicao, double preco){
-        this.setISBN();
+        this.setId();
         this.setTitulo(titulo);
         this.setAutor(autor);
         this.setEditora(editora);
@@ -24,8 +25,16 @@ public class Livro {
         this.setDisponibilidade(true);
     }
 
-    private void setISBN(){
-        this.ISBN = Livro.cod ++;
+    private void setId(){
+        this.id = Livro.cod ++;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+
+    private void setISBN(int ISBN){
+        this.ISBN = ISBN;
     }
 
     public int getISBN(){
@@ -125,7 +134,7 @@ public class Livro {
     }
 
     public String toString(){
-        return  "ISBN: " + this.getISBN() + "\n" +
+        return  "ID: " + this.getId() + "\n" +
                 "Título: " + this.getTitulo() + "\n" +
                 "Autor: " + this.getAutor() + "\n" +
                 "Editora: " + this.getEditora() + "\n" +
