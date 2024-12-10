@@ -7,7 +7,7 @@ public class UsuarioSimples extends Usuario {
         super(nome, RG, CPF, dataNascimento, email, endereco, telefone, senha, dataCadastro);
         this.setPreferencias(preferencias);
     }
-
+    //Sucesso
     //public String verificaPreferencias() {}
 
     public boolean setPreferencias(String preferencias) {
