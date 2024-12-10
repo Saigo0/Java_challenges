@@ -8,13 +8,13 @@ public abstract class Usuario extends Pessoa {
 
     public Usuario(String nome, String RG, String CPF, String dataNascimento, String email, String endereco, String telefone, String senha, String dataCadastro){
         super(nome, RG, CPF, dataNascimento, email, endereco,telefone);
-        this.setId(id);
+        this.setId();
         this.setSenha(senha);
         this.setDataCadastro(dataCadastro);
     }
 
 
-    private void setId(int id){
+    private void setId(){
         this.id = Usuario.cod++;
     }
 
