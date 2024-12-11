@@ -3,19 +3,13 @@ package Sistema;
 public class UsuarioSimples extends Usuario {
     private String preferencias;
 
-    public UsuarioSimples(String nome, String RG, String CPF, String dataNascimento, String email, String endereco, String telefone, String senha, String dataCadastro, String preferencias) {
-        super(nome, RG, CPF, dataNascimento, email, endereco, telefone, senha, dataCadastro);
-        this.setPreferencias(preferencias);
+    public UsuarioSimples(String nome, String RG, String CPF, String dataNascimento, String email, String endereco, String telefone, String nomeUsuario, String nivelAcesso, String senha, String dataCadastro, String preferencias) {
+        super(nome, RG, CPF, dataNascimento, email, endereco, telefone, nomeUsuario, nivelAcesso, senha, dataCadastro);
     }
-    //Sucesso
-    //public String verificaPreferencias() {}
 
-    public boolean setPreferencias(String preferencias) {
-        if(!preferencias.isBlank()){
-            this.preferencias = preferencias;
-            return true;
-        } else
-            return false;
+    public void setPreferencias(String preferencias) {
+        //Usar, aqui, um método que irá calcular a preferência
+        this.preferencias = preferencias;
     }
 
     public String getPreferencias() {

@@ -1,0 +1,17 @@
+Refinar o construtor da classe Usuario e de suas subclasses (os novos atributos e a nova classe na herança de Usuario acabaram
+de ser atualizados no diagrama de classes, mas ainda falta ajustar seus construtores, métodos e cardinalidade tanto no diagrama de
+classes, quanto na implementação do código-fonte)
+
+Continuar a implementação dos getters e setters das classes;
+
+Implementar o método aplicarDesconto() para os usuários especiais;
+
+Refinar as validações dos setters de todas as classes (verificar regras de negócio e/ou regras dos atributos);
+
+Refinar o diagrama de classes;
+
+Refinar as instanciações (pode ser um problema nos construtores, nos setters ou nos próprios atributos presentes
+nas classes Usuario, UsuarioSimples e UsuarioEspecial) ✓
+
+Link do Kanban board: https://trello.com/b/dVwcw6A9/kanban-biblioteca
+Link do diagrama de classes (LucidChart): https://lucid.app/lucidchart/2ddf0d5b-2ab8-413f-913c-acf7a5012c0b/edit?beaconFlowId=7296580552A223AA&invitationId=inv_d20d6e56-9680-4c6d-a08b-7c64b03ebff3&page=HWEp-vi-RSFO#

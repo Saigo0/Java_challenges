@@ -23,10 +23,6 @@ public abstract class Pessoa {
         } else return false;
     }
 
-    public String getNome() {
-        return this.nome;
-    }
-
     public boolean setRG(String RG) {
         if (!RG.isBlank()) {
             this.RG = RG;
@@ -34,19 +30,11 @@ public abstract class Pessoa {
         } else return false;
     }
 
-    public String getRG() {
-        return this.RG;
-    }
-
     public boolean setCPF(String CPF) {
         if (!CPF.isBlank()) {
             this.CPF = CPF;
             return true;
         } else return false;
-    }
-
-    public String getCPF() {
-        return this.CPF;
     }
 
     public boolean setDataNascimento(String dataNascimento) {
@@ -57,20 +45,11 @@ public abstract class Pessoa {
             return false;
     }
 
-    public String getDataNascimento() {
-        return this.dataNascimento;
-    }
-
-
     public boolean setEmail(String email) {
         if (!email.isBlank()) {
             this.email = email;
             return true;
         } else return false;
-    }
-
-    public String getEmail() {
-        return this.email;
     }
 
     public boolean setEndereco(String endereco) {
@@ -81,10 +60,6 @@ public abstract class Pessoa {
             return false;
     }
 
-    public String getEndereco() {
-        return this.endereco;
-    }
-
     public boolean setTelefone(String telefone) {
         if (!telefone.isBlank()) {
             this.telefone = telefone;
@@ -93,12 +68,37 @@ public abstract class Pessoa {
             return false;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
+    public String getRG() {
+        return this.RG;
+    }
+
+    public String getCPF() {
+        return this.CPF;
+    }
+
+    public String getDataNascimento() {
+        return this.dataNascimento;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getEndereco() {
+        return this.endereco;
+    }
+
     public String getTelefone() {
         return this.telefone;
     }
+
     @Override
-    public String toString(){
-        return  "Nome: " + this.getNome() + "\n" +
+    public String toString() {
+        return "Nome: " + this.getNome() + "\n" +
                 "RG: " + this.getRG() + "\n" +
                 "CPF: " + this.getCPF() + "\n" +
                 "Data de nascimento: " + this.getDataNascimento() + "\n" +

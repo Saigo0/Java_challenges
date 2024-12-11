@@ -5,8 +5,8 @@ public class Fornecedor {
     private int id;
     private String cnpj;
     private String nome;
-    private String email;
     private String telefone;
+    private String email;
     private String endereco;
     private String categoria;
     private int prazoEntrega;
@@ -32,20 +32,12 @@ public class Fornecedor {
         this.id = Fornecedor.cod++;
     }
 
-    public int getId() {
-        return this.id;
-    }
-
     public boolean setCnpj(String cnpj) {
         if(!cnpj.isBlank()){
             this.cnpj = cnpj;
             return true;
         } else
             return false;
-    }
-
-    public String getCnpj() {
-        return this.cnpj;
     }
 
     private boolean setNome(String nome) {
@@ -56,20 +48,12 @@ public class Fornecedor {
             return false;
     }
 
-    public String getNome() {
-        return this.nome;
-    }
-
     public boolean setEmail(String email) {
         if(!email.isBlank()){
             this.email = email;
             return true;
         } else
             return false;
-    }
-
-    public String getEmail() {
-        return this.email;
     }
 
     public boolean setTelefone(String telefone) {
@@ -80,20 +64,12 @@ public class Fornecedor {
             return false;
     }
 
-    public String getTelefone() {
-        return this.telefone;
-    }
-
     public boolean setEndereco(String endereco) {
         if(!endereco.isBlank()){
             this.endereco = endereco;
             return true;
         } else
             return false;
-    }
-
-    public String getEndereco() {
-        return this.endereco;
     }
 
     public boolean setCategoria(String categoria) {
@@ -104,10 +80,6 @@ public class Fornecedor {
             return false;
     }
 
-    public String getCategoria() {
-        return this.categoria;
-    }
-
     public boolean setPrazoEntrega(int prazoEntrega) {
         if(prazoEntrega>0){
             this.prazoEntrega = prazoEntrega;
@@ -116,32 +88,57 @@ public class Fornecedor {
             return false;
     }
 
-    public int getPrazoEntrega() {
-        return this.prazoEntrega;
-    }
-
-    public boolean setReputacao(String reputacao) {
-        if(!reputacao.isBlank()){
-            this.reputacao = reputacao;
-            return true;
-        } else
-            return false;
-    }
-
-    public String getReputacao() {
-        return this.reputacao;
+    public void setReputacao(String reputacao) {
+        this.reputacao = reputacao;
+        //Calcular com base no prazo de entrega
     }
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
     }
 
-    public String getObservacoes() {
-        return this.observacoes;
-    }
-
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getTelefone() {
+        return this.telefone;
+    }
+
+    public String getEndereco() {
+        return this.endereco;
+    }
+
+    public String getCategoria() {
+        return this.categoria;
+    }
+
+    public int getPrazoEntrega() {
+        return this.prazoEntrega;
+    }
+
+    public String getReputacao() {
+        return this.reputacao;
+    }
+
+    public String getObservacoes() {
+        return this.observacoes;
     }
 
     public boolean getStatus() {
