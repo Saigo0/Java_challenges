@@ -3,16 +3,18 @@ package Sistema;
 public class UsuarioEspecial extends UsuarioSimples {
     private String nivelBeneficio;
     private String dataValidade;
+    //Pra ser um usuário especial, é pago um valor de inscrição, que varia de acordo com o plano solicitado
+    //Podem pegar mais de 10 livros de uma vez, não pagam ou recebem descontos em multas geradas por atrasos, Prazo de devolução estendido
 
-    public UsuarioEspecial(String nome, String RG, String CPF, String dataNascimento, String email, String endereco, String telefone, String nomeUsuario, String nivelUsuario, String senha, String dataCadastro, String preferencias, String nivelBeneficio, String dataValidade) {
-        super(nome, RG, CPF, dataNascimento, email, endereco, telefone, nomeUsuario, nivelUsuario,  senha, dataCadastro, preferencias);
-        this.setNivelBeneficio(nivelBeneficio);
+    public UsuarioEspecial(String nome, String RG, String CPF, String dataNascimento, String email, String endereco, String telefone, String nomeUsuario, String nivelAcesso, String senha, String dataCadastro, String preferencias, String dataValidade, double valorPago) {
+        super(nome, RG, CPF, dataNascimento, email, endereco, telefone, nomeUsuario, nivelAcesso,  senha, dataCadastro, preferencias);
+        Biblioteca biblioteca = Biblioteca.getInstancia();
+        this.setNivelBeneficio(biblioteca, valorPago);
         this.setDataValidade(dataValidade);
     }
 
-    public void setNivelBeneficio(String nivelBeneficio) {
-        //Chamar o método que verifica qual é o nível do benefício
-        this.nivelBeneficio = nivelBeneficio;
+    public void setNivelBeneficio(Biblioteca biblioteca, double valorPago) {
+        this.nivelBeneficio = biblioteca.verificaNivelBeneficio(valorPago);
     }
 
     public boolean setDataValidade(String dataValidade) {
@@ -22,7 +24,6 @@ public class UsuarioEspecial extends UsuarioSimples {
         } else
             return false;
     }
-
 
     public String getNivelBeneficio() {
         return this.nivelBeneficio;

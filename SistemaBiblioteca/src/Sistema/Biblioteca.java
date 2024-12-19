@@ -1,8 +1,11 @@
 package Sistema;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Biblioteca {
+    private static Biblioteca instanciaUnica;
     private static int cod = 1;
     private int id;
     private String nome;
@@ -18,7 +21,17 @@ public class Biblioteca {
     private ArrayList<Emprestimo> emprestimos;
     private ArrayList<Administrador> administradores;
 
-    public Biblioteca(String nome, String endereco, String horarioFuncionamento, int capacidade, Administrador responsavel, String tipo) {
+    private static final Map<Double, String> niveis = new HashMap<>();
+
+    static {
+        niveis.put(150.0, "Usuário Diamante");
+        niveis.put(100.0, "Usuário elite");
+        niveis.put(50.0, "Usuário premium");
+        niveis.put(25.0, "Usuário plus");
+        niveis.put(15.0, "Usuário básico");
+    }
+
+    private Biblioteca(String nome, String endereco, String horarioFuncionamento, int capacidade, String tipo) {
         this.setNome(nome);
         this.setEndereco(endereco);
         this.setHorarioFuncionamento(horarioFuncionamento);
@@ -31,6 +44,24 @@ public class Biblioteca {
         equipamentos = new ArrayList<Equipamento>();
         emprestimos = new ArrayList<Emprestimo>();
         administradores = new ArrayList<Administrador>();
+    }
+
+    public static Biblioteca getInstancia(String nome, String endereco, String horarioFuncionamento, int capacidade, String tipo) {
+        if (instanciaUnica == null) {
+            instanciaUnica = new Biblioteca(nome, endereco, horarioFuncionamento, capacidade, tipo);
+        }
+        return instanciaUnica;
+    }
+
+    public static Biblioteca getInstancia() {
+        if (instanciaUnica == null) {
+            throw new IllegalStateException("A Biblioteca ainda não foi inicializada.");
+        }
+        return instanciaUnica;
+    }
+
+    public String verificaNivelBeneficio(double valorPago) {
+        return niveis.getOrDefault(valorPago, "Valor pago não condiz com nenhum valor de assinatura existente");
     }
 
     private void setId() {
@@ -100,84 +131,84 @@ public class Biblioteca {
         this.livros.add(umLivro);
     }
 
-    public void removeLivros(Livro umLivro) {
-        this.livros.remove(umLivro);
-    }
-
-    public ArrayList<Livro> getLivros() {
-        return this.livros;
-    }
-
     public void addFuncionarios(Funcionario umFuncionario) {
         this.funcionarios.add(umFuncionario);
-    }
-
-    public void removeFuncionarios(Funcionario umFuncionario) {
-        this.funcionarios.remove(umFuncionario);
-    }
-
-    public ArrayList<Funcionario> getFuncionarios() {
-        return this.funcionarios;
     }
 
     public void addUsuarios(Usuario umUsuario) {
         this.usuarios.add(umUsuario);
     }
 
-    public void removeUsuarios(Usuario umUsuario) {
-        this.usuarios.remove(umUsuario);
-    }
-
-    public ArrayList<Usuario> getUsuarios() {
-        return this.usuarios;
-    }
-
     public void addFornecedores(Fornecedor umFornecedor) {
         this.fornecedores.add(umFornecedor);
-    }
-
-    public void removeFornecedores(Fornecedor umFornecedor) {
-        this.fornecedores.remove(umFornecedor);
-    }
-
-    public ArrayList<Fornecedor> getFornecedores() {
-        return this.fornecedores;
     }
 
     public void addEquipamentos(Equipamento umEquipamento) {
         this.equipamentos.add(umEquipamento);
     }
 
-    public void removeEquipamentos(Equipamento umEquipamento) {
-        this.equipamentos.remove(umEquipamento);
-    }
-
-    public ArrayList<Equipamento> getEquipamentos() {
-        return this.equipamentos;
-    }
-
     public void addEmprestimos(Emprestimo umEmprestimo) {
         this.emprestimos.add(umEmprestimo);
-    }
-
-    public void removeEmprestimos(Emprestimo umEmprestimo) {
-        this.emprestimos.remove(umEmprestimo);
-    }
-
-    public ArrayList<Emprestimo> getEmprestimos() {
-        return this.emprestimos;
     }
 
     public void addAdministradores(Administrador umAdministrador) {
         this.administradores.add(umAdministrador);
     }
 
+    public void removeLivros(Livro umLivro) {
+        this.livros.remove(umLivro);
+    }
+
+    public void removeFuncionarios(Funcionario umFuncionario) {
+        this.funcionarios.remove(umFuncionario);
+    }
+
+    public void removeUsuarios(Usuario umUsuario) {
+        this.usuarios.remove(umUsuario);
+    }
+
+    public void removeFornecedores(Fornecedor umFornecedor) {
+        this.fornecedores.remove(umFornecedor);
+    }
+
+    public void removeEquipamentos(Equipamento umEquipamento) {
+        this.equipamentos.remove(umEquipamento);
+    }
+
+    public void removeEmprestimos(Emprestimo umEmprestimo) {
+        this.emprestimos.remove(umEmprestimo);
+    }
+
     public void removeAdministradores(Administrador umAdministrador) {
         this.administradores.remove(umAdministrador);
     }
 
+    public ArrayList<Livro> getLivros() {
+        return this.livros;
+    }
+
+    public ArrayList<Funcionario> getFuncionarios() {
+        return this.funcionarios;
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return this.usuarios;
+    }
+
+    public ArrayList<Fornecedor> getFornecedores() {
+        return this.fornecedores;
+    }
+
+    public ArrayList<Equipamento> getEquipamentos() {
+        return this.equipamentos;
+    }
+
     public ArrayList<Administrador> getAdministradores() {
         return this.administradores;
+    }
+
+    public ArrayList<Emprestimo> getEmprestimos() {
+        return this.emprestimos;
     }
 
     public String imprimeLivros() {
