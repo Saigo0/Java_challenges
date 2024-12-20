@@ -33,7 +33,7 @@ public class Fornecedor {
     }
 
     public boolean setCnpj(String cnpj) {
-        if(!cnpj.isBlank()){
+        if(!cnpj.isBlank() && cnpj.length() == 11){
             this.cnpj = cnpj;
             return true;
         } else
@@ -146,7 +146,8 @@ public class Fornecedor {
     }
 
     public String toString() {
-        return  "CNPJ: " + this.getCnpj() + "\n" +
+        return  "ID: " + this.getId() + "\n" +
+                "CNPJ: " + this.getCnpj() + "\n" +
                 "Nome: " + this.getNome() + "\n" +
                 "Telefone: " + this.getTelefone() + "\n" +
                 "Email: " + this.getEmail() + "\n" +
