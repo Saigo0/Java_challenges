@@ -12,7 +12,7 @@ public class UsuarioEspecial extends UsuarioSimples {
         this.setNivelBeneficio(biblioteca, valorPago);
         this.setDataValidade(dataValidade);
     }
-
+    //Implementar a parte de emprestimos de livros correspondente à classe em que o usuário especial se enquadra
     public void setNivelBeneficio(Biblioteca biblioteca, double valorPago) {
         this.nivelBeneficio = biblioteca.verificaNivelBeneficio(valorPago);
     }

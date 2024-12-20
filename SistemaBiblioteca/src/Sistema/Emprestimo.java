@@ -1,6 +1,5 @@
 package Sistema;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Emprestimo {
@@ -25,9 +24,36 @@ public class Emprestimo {
         this.setDataDevolucaoReal(dataDevolucaoReal);
     }
 
+    public void realizaEmprestimo(UsuarioEspecial usuarioEspecial) {
+        if (usuarioEspecial.getNivelBeneficio().equals("Usuário Diamante")) {
+            if (getLivros().size() < 10) {
+                //verificar se o livro está disponível
+                //adicionar livro
+            }
+        } else {
+            if (usuarioEspecial.getNivelBeneficio().equals("Usuário Elite")) {
+
+            } else {
+                if (usuarioEspecial.getNivelBeneficio().equals("Usuário Premium")) {
+
+                } else {
+                    if (usuarioEspecial.getNivelBeneficio().equals("Usuário Plus")) {
+                    } else {
+                        if (usuarioEspecial.getNivelBeneficio().equals("Usuário Básico")) {
+
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+
     public void addLivros(Livro liv) {
         this.livros.add(liv);
     }
+
     public void removeLivros(Livro liv) {
         this.livros.remove(liv);
     }
@@ -62,7 +88,7 @@ public class Emprestimo {
     }
 
     public boolean setMulta(double multa) {
-        if (multa > 0){
+        if (multa > 0) {
             this.multa = multa;
             return true;
         } else return false;
@@ -90,6 +116,7 @@ public class Emprestimo {
     public boolean getStatus() {
         return this.status;
     }
+
     public String getDataEmprestimos() {
         return this.dataEmprestimos;
     }
@@ -116,7 +143,7 @@ public class Emprestimo {
 
     @Override
     public String toString() {
-        return  "ID: " + this.getId() + "\n" +
+        return "ID: " + this.getId() + "\n" +
                 "Data do emprestimo: " + this.getDataEmprestimos() + "\n" +
                 "Data da devolução: " + this.getDataDevolucao() + "\n" +
                 "Status: " + this.getStatus() + "\n" +
