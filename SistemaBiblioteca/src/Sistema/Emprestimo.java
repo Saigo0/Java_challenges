@@ -12,23 +12,31 @@ public class Emprestimo {
     private String descricao;
     private double multa;
     private String dataDevolucaoReal;
+    //Status e dat devolução
 
-    public Emprestimo(String dataEmprestimos, String dataDevolucao, boolean status, String descricao, double multa, String dataDevolucaoReal) {
+    public Emprestimo(String dataEmprestimos, String descricao) {
         this.setId();
         livros = new ArrayList<Livro>();
         this.setDataEmprestimos(dataEmprestimos);
-        this.setDataDevolucao(dataDevolucao);
         this.setStatus(status);
         this.setDescricao(descricao);
         this.setMulta(multa);
-        this.setDataDevolucaoReal(dataDevolucaoReal);
+        Biblioteca biblioteca = Biblioteca.getInstancia();
     }
 
-    public void realizaEmprestimo(UsuarioEspecial usuarioEspecial) {
+    public void realizaEmprestimo(UsuarioEspecial usuarioEspecial, Biblioteca biblioteca) {
         if (usuarioEspecial.getNivelBeneficio().equals("Usuário Diamante")) {
-            if (getLivros().size() < 10) {
-                //verificar se o livro está disponível
-                //adicionar livro
+            if (getLivros().size() <= 10) {
+                if (biblioteca.getLivros().equals(livros)) {
+                    if (biblioteca.getLivrosDisponiveis().equals(livros)) {
+                        ArrayList<Livro> livrosEmprestimos = livros;
+                        System.out.println(livrosEmprestimos);
+                        for (Livro livros : livrosEmprestimos) {
+                            livros.setDisponibilidade(false);
+                            System.out.println(livros.getDisponibilidade());
+                        }
+                    }
+                }
             }
         } else {
             if (usuarioEspecial.getNivelBeneficio().equals("Usuário Elite")) {
@@ -46,7 +54,6 @@ public class Emprestimo {
                 }
             }
         }
-
     }
 
 

@@ -1,8 +1,13 @@
 package Sistema;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.time.chrono.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.LocalDateTime;
 
 public class Biblioteca {
     private static Biblioteca instanciaUnica;
@@ -20,8 +25,10 @@ public class Biblioteca {
     private ArrayList<Equipamento> equipamentos;
     private ArrayList<Emprestimo> emprestimos;
     private ArrayList<Administrador> administradores;
-
+    private ArrayList<Livro> livrosDisponiveis;
+    private ArrayList<Livro> livrosIndisponiveis;
     private static final Map<Double, String> niveis = new HashMap<>();
+    private final Date now = new Date();
 
     static {
         niveis.put(150.0, "Usuário Diamante");
@@ -32,6 +39,7 @@ public class Biblioteca {
     }
 
     private Biblioteca(String nome, String endereco, String horarioFuncionamento, int capacidade, String tipo) {
+        this.setId();
         this.setNome(nome);
         this.setEndereco(endereco);
         this.setHorarioFuncionamento(horarioFuncionamento);
@@ -44,6 +52,9 @@ public class Biblioteca {
         equipamentos = new ArrayList<Equipamento>();
         emprestimos = new ArrayList<Emprestimo>();
         administradores = new ArrayList<Administrador>();
+        livrosDisponiveis = new ArrayList<Livro>();
+        livrosIndisponiveis = new ArrayList<Livro>();
+
     }
 
     public static Biblioteca getInstancia(String nome, String endereco, String horarioFuncionamento, int capacidade, String tipo) {
@@ -155,6 +166,14 @@ public class Biblioteca {
         this.administradores.add(umAdministrador);
     }
 
+    public void addLivrosDisponiveis(Livro livro) {
+        this.livrosDisponiveis.add(livro);
+    }
+
+    public void addLivrosInsdisponiveis(Livro livro) {
+        this.livrosIndisponiveis.add(livro);
+    }
+
     public void removeLivros(Livro umLivro) {
         this.livros.remove(umLivro);
     }
@@ -183,6 +202,14 @@ public class Biblioteca {
         this.administradores.remove(umAdministrador);
     }
 
+    public void removeLivrosDisponiveis(Livro livro) {
+        this.livrosDisponiveis.remove(livro);
+    }
+
+    public void removeLivrosIndisponiveis(Livro livro) {
+        this.livrosIndisponiveis.remove(livro);
+    }
+
     public ArrayList<Livro> getLivros() {
         return this.livros;
     }
@@ -209,6 +236,14 @@ public class Biblioteca {
 
     public ArrayList<Emprestimo> getEmprestimos() {
         return this.emprestimos;
+    }
+
+    public ArrayList<Livro> getLivrosDisponiveis() {
+        return this.livrosDisponiveis;
+    }
+
+    public ArrayList<Livro> getLivrosIndisponiveis() {
+        return this.livrosIndisponiveis;
     }
 
     public String imprimeLivros() {

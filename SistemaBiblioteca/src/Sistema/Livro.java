@@ -14,8 +14,10 @@ public class Livro {
     private double precoVenda;
     private double precoCompra;
 
+
     public Livro(String titulo, String autor, String editora, int anoEdicao, int numPaginas, String localEdicao, double precoVenda, double precoCompra) {
         this.setId();
+        this.setISBN(ISBN);
         this.setTitulo(titulo);
         this.setAutor(autor);
         this.setEditora(editora);
@@ -99,6 +101,10 @@ public class Livro {
             return false;
     }
 
+    public void setDisponibilidade(boolean disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
+
     public int getISBN() {
         return this.ISBN;
     }
@@ -129,10 +135,6 @@ public class Livro {
 
     public int getNumPaginas() {
         return this.numPaginas;
-    }
-
-    public void setDisponibilidade(boolean disponibilidade) {
-        this.disponibilidade = disponibilidade;
     }
 
     public boolean getDisponibilidade() {
