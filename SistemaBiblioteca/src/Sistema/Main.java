@@ -25,8 +25,8 @@ public class Main {
         //emp1.addLivros(livro1);
         emp1.addLivros(livro2);
         emp1.realizaEmprestimo(userEspecial, biblioteca);
-
-
+        System.out.println(livro1.getDisponibilidade());
+        System.out.println(livro2.getDisponibilidade());
 
     }
 }

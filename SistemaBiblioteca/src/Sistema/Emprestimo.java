@@ -29,19 +29,26 @@ public class Emprestimo {
             if (getLivros().size() <= Constante.LIMITE_LIVROS_DIAMANTE) {
                 int cont = 0;
                 for (Livro liv : livros) {
-                    for(Livro liv2: biblioteca.getLivros()){
-                        if(liv == liv2){
+                    for (Livro liv2 : biblioteca.getLivros()) {
+                        if (liv == liv2) {
                             cont++;
                         }
                     }
                 }
-                if(cont == livros.size()){
-                    if (biblioteca.livrosDisponiveis.equals(livros)) {
+                if (cont == livros.size()) {
+                    int verififica = 0;
+                    for (Livro liv : livros) {
+                        for (Livro liv2 : biblioteca.getLivrosDisponiveis()) {
+                            if (liv == liv2) {
+                                verififica++;
+                            }
+                        }
+                    }
+                    if (verififica == livros.size()) {
                         ArrayList<Livro> livrosEmprestimos = this.livros;
                         System.out.println(livrosEmprestimos);
                         for (Livro livros : livrosEmprestimos) {
                             GerenciaLivro.tornarIndisponivel(livros, biblioteca);
-                            System.out.println(livros.getDisponibilidade());
                         }
                     }
                 }
