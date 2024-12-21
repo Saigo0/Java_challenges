@@ -27,23 +27,23 @@ public class Emprestimo {
     public void realizaEmprestimo(UsuarioEspecial usuarioEspecial, Biblioteca biblioteca) {
         if (usuarioEspecial.getNivelBeneficio().equals("Usuário Diamante")) {
             if (getLivros().size() <= Constante.LIMITE_LIVROS_DIAMANTE) {
+                int cont = 0;
                 for (Livro liv : livros) {
-
-                    if (biblioteca.getLivros().equals(livros)) {
-                        //O size que está sendo analisado! Se tivermos 2 livros no lista de livros da biblioteca e somente 1 na lista de emprestimo, resulta em erro
-                        //Temos que fazer um for pra verificar se os livros de emprestimo estão em biblioteca e não se são os mesmo de biblioteca
-
-
-                        if (biblioteca.livrosDisponiveis.equals(livros)) {
-                            ArrayList<Livro> livrosEmprestimos = this.livros;
-                            System.out.println(livrosEmprestimos);
-                            for (Livro livros : livrosEmprestimos) {
-                                GerenciaLivro.tornarIndisponivel(livros, biblioteca);
-                                System.out.println(livros.getDisponibilidade());
-                            }
+                    for(Livro liv2: biblioteca.getLivros()){
+                        if(liv == liv2){
+                            cont++;
                         }
                     }
-                    //if (biblioteca.getLivros().equals(livros)) {
+                }
+                if(cont == livros.size()){
+                    if (biblioteca.livrosDisponiveis.equals(livros)) {
+                        ArrayList<Livro> livrosEmprestimos = this.livros;
+                        System.out.println(livrosEmprestimos);
+                        for (Livro livros : livrosEmprestimos) {
+                            GerenciaLivro.tornarIndisponivel(livros, biblioteca);
+                            System.out.println(livros.getDisponibilidade());
+                        }
+                    }
                 }
             }
         } else {
