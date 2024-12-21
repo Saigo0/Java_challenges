@@ -1,7 +1,5 @@
 package Sistema;
 
-
-
 public class UsuarioEspecial extends UsuarioSimples {
     private String nivelBeneficio;
     private String dataValidade;

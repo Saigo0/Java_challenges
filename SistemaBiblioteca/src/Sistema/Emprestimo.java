@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Emprestimo {
     private static int cod = 1;
     private int id;
-    private ArrayList<Livro> livros;
+    private final ArrayList<Livro> livros;
     private String dataEmprestimos;
     private String dataDevolucao;
     private boolean status;
@@ -26,13 +26,12 @@ public class Emprestimo {
 
     public void realizaEmprestimo(UsuarioEspecial usuarioEspecial, Biblioteca biblioteca) {
         if (usuarioEspecial.getNivelBeneficio().equals("Usuário Diamante")) {
-            if (getLivros().size() <= 10) {
+            if (getLivros().size() <= Constante.LIMITE_LIVROS_DIAMANTE) {
                 if (biblioteca.getLivros().equals(livros)) {
-                    if (biblioteca.getLivrosDisponiveis().equals(livros)) {
+                    if (GerenciaLivro.livrosDisponiveis.equals(livros)) {
                         ArrayList<Livro> livrosEmprestimos = livros;
-                        System.out.println(livrosEmprestimos);
                         for (Livro livros : livrosEmprestimos) {
-                            livros.setDisponibilidade(false);
+                            GerenciaLivro.tornarIndisponivel(livros);
                             System.out.println(livros.getDisponibilidade());
                         }
                     }
