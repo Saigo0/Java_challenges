@@ -15,6 +15,8 @@ public class Biblioteca {
     private int capacidade;
     private String tipo;
     private final ArrayList<Livro> livros;
+    public final ArrayList<Livro> livrosDisponiveis;
+    public final ArrayList<Livro> livrosIndisponiveis;
     private final ArrayList<Funcionario> funcionarios;
     private final ArrayList<Usuario> usuarios;
     private final ArrayList<Fornecedor> fornecedores;
@@ -40,6 +42,8 @@ public class Biblioteca {
         this.setCapacidade(capacidade);
         this.setTipo(tipo);
         livros = new ArrayList<Livro>();
+        livrosDisponiveis = new ArrayList<Livro>();
+        livrosIndisponiveis = new ArrayList<Livro>();
         funcionarios = new ArrayList<Funcionario>();
         usuarios = new ArrayList<Usuario>();
         fornecedores = new ArrayList<Fornecedor>();
@@ -187,6 +191,14 @@ public class Biblioteca {
 
     public ArrayList<Livro> getLivros() {
         return this.livros;
+    }
+
+    public ArrayList<Livro> getLivrosDisponiveis() {
+        return livrosDisponiveis;
+    }
+
+    public ArrayList<Livro> getLivrosIndisponiveis() {
+        return livrosIndisponiveis;
     }
 
     public ArrayList<Funcionario> getFuncionarios() {

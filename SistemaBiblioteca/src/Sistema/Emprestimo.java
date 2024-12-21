@@ -27,14 +27,23 @@ public class Emprestimo {
     public void realizaEmprestimo(UsuarioEspecial usuarioEspecial, Biblioteca biblioteca) {
         if (usuarioEspecial.getNivelBeneficio().equals("Usuário Diamante")) {
             if (getLivros().size() <= Constante.LIMITE_LIVROS_DIAMANTE) {
-                if (biblioteca.getLivros().equals(livros)) {
-                    if (GerenciaLivro.livrosDisponiveis.equals(livros)) {
-                        ArrayList<Livro> livrosEmprestimos = livros;
-                        for (Livro livros : livrosEmprestimos) {
-                            GerenciaLivro.tornarIndisponivel(livros);
-                            System.out.println(livros.getDisponibilidade());
+                for (Livro liv : livros) {
+
+                    if (biblioteca.getLivros().equals(livros)) {
+                        //O size que está sendo analisado! Se tivermos 2 livros no lista de livros da biblioteca e somente 1 na lista de emprestimo, resulta em erro
+                        //Temos que fazer um for pra verificar se os livros de emprestimo estão em biblioteca e não se são os mesmo de biblioteca
+
+
+                        if (biblioteca.livrosDisponiveis.equals(livros)) {
+                            ArrayList<Livro> livrosEmprestimos = this.livros;
+                            System.out.println(livrosEmprestimos);
+                            for (Livro livros : livrosEmprestimos) {
+                                GerenciaLivro.tornarIndisponivel(livros, biblioteca);
+                                System.out.println(livros.getDisponibilidade());
+                            }
                         }
                     }
+                    //if (biblioteca.getLivros().equals(livros)) {
                 }
             }
         } else {

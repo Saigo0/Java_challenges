@@ -1,30 +1,17 @@
 package Sistema;
 
-import java.util.ArrayList;
-
 public class GerenciaLivro {
-    public static ArrayList<Livro> livrosDisponiveis;
-    public static ArrayList<Livro> livrosIndisponiveis;
 
-    public GerenciaLivro() {
-        livrosDisponiveis = new ArrayList<Livro>();
-        livrosIndisponiveis = new ArrayList<Livro>();
-    }
+    private GerenciaLivro() {}
 
-    public static void tornarDisponivel(Livro livro) {
-        livrosIndisponiveis.remove(livro);
-        livrosDisponiveis.add(livro);
+    public static void tornarDisponivel(Livro livro, Biblioteca biblioteca) {
+        biblioteca.livrosIndisponiveis.remove(livro);
+        biblioteca.livrosDisponiveis.add(livro);
+        livro.setDisponibilidade(true);
     }
-    public static void tornarIndisponivel(Livro livro) {
-        livrosDisponiveis.remove(livro);
-        livrosIndisponiveis.add(livro);
-    }
-
-    public ArrayList<Livro> getLivrosDisponiveis() {
-        return livrosDisponiveis;
-    }
-
-    public ArrayList<Livro> getLivrosIndisponiveis() {
-        return livrosIndisponiveis;
+    public static void tornarIndisponivel(Livro livro, Biblioteca biblioteca) {
+        biblioteca.livrosDisponiveis.remove(livro);
+        biblioteca.livrosIndisponiveis.add(livro);
+        livro.setDisponibilidade(false);
     }
 }
