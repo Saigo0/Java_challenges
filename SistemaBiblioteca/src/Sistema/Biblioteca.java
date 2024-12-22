@@ -27,11 +27,11 @@ public class Biblioteca {
     private final Date now = new Date();
 
     static {
-        niveis.put(150.0, "Usuário Diamante");
-        niveis.put(100.0, "Usuário elite");
-        niveis.put(50.0, "Usuário premium");
-        niveis.put(25.0, "Usuário plus");
-        niveis.put(15.0, "Usuário básico");
+        niveis.put(150.0, NiveisEnum.DIAMANTE.name());
+        niveis.put(100.0, NiveisEnum.ELITE.name());
+        niveis.put(50.0, NiveisEnum.PRIMIUM.name() );
+        niveis.put(25.0, NiveisEnum.PLUS.name());
+        niveis.put(15.0, NiveisEnum.BASICO.name());
     }
 
     private Biblioteca(String nome, String endereco, String horarioFuncionamento, int capacidade, String tipo) {

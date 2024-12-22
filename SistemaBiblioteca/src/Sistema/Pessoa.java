@@ -1,5 +1,7 @@
 package Sistema;
 
+import java.util.ArrayList;
+
 public abstract class Pessoa {
     private String nome = "";
     private String RG = "";

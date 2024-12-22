@@ -1,8 +1,8 @@
 package Sistema;
 
-public class GerenciaLivro {
+public class GerenciaLivros {
 
-    private GerenciaLivro() {}
+    private GerenciaLivros() {}
 
     public static void tornarDisponivel(Livro livro, Biblioteca biblioteca) {
         biblioteca.livrosIndisponiveis.remove(livro);

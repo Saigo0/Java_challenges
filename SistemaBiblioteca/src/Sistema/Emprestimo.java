@@ -25,8 +25,8 @@ public class Emprestimo {
     }
 
     public void realizaEmprestimo(UsuarioEspecial usuarioEspecial, Biblioteca biblioteca) {
-        if (usuarioEspecial.getNivelBeneficio().equals("Usuário Diamante")) {
-            if (getLivros().size() <= Constante.LIMITE_LIVROS_DIAMANTE) {
+        if (usuarioEspecial.getNivelBeneficio().equals(NiveisEnum.DIAMANTE.name())) {
+            if (getLivros().size() <= NiveisEnum.DIAMANTE.getLimiteLivros()) {
                 int cont = 0;
                 for (Livro liv : livros) {
                     for (Livro liv2 : biblioteca.getLivros()) {
@@ -48,7 +48,7 @@ public class Emprestimo {
                         ArrayList<Livro> livrosEmprestimos = this.livros;
                         System.out.println(livrosEmprestimos);
                         for (Livro livros : livrosEmprestimos) {
-                            GerenciaLivro.tornarIndisponivel(livros, biblioteca);
+                            GerenciaLivros.tornarIndisponivel(livros, biblioteca);
                         }
                     }
                 }
