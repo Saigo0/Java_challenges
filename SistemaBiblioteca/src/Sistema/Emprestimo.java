@@ -36,15 +36,15 @@ public class Emprestimo {
                     }
                 }
                 if (cont == livros.size()) {
-                    int verififica = 0;
+                    int verifica = 0;
                     for (Livro liv : livros) {
                         for (Livro liv2 : biblioteca.getLivrosDisponiveis()) {
                             if (liv == liv2) {
-                                verififica++;
+                                verifica++;
                             }
                         }
                     }
-                    if (verififica == livros.size()) {
+                    if (verifica == livros.size()) {
                         ArrayList<Livro> livrosEmprestimos = this.livros;
                         System.out.println(livrosEmprestimos);
                         for (Livro livros : livrosEmprestimos) {
