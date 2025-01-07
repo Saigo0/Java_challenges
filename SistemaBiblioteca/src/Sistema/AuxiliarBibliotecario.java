@@ -1,7 +1,6 @@
 package Sistema;
 
-public class
-AuxiliarBibliotecario extends Funcionario {
+public class AuxiliarBibliotecario extends Funcionario {
     private String areaAtuacao;
     private Bibliotecario supervisor;
 
