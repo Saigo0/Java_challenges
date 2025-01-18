@@ -25,8 +25,9 @@ public class Emprestimo {
     }
 
     public void realizaEmprestimo(UsuarioEspecial usuarioEspecial, Biblioteca biblioteca) {
-        if (usuarioEspecial.getNivelBeneficio().equals(CategoriasUsuarioEspecial.DIAMANTE.name())) {
-            if (getLivros().size() <= CategoriasUsuarioEspecial.DIAMANTE.getLIMITE_LIVROS()) {
+        if (usuarioEspecial.getNivelBeneficio() != null) {
+            CategoriasUsuarioEspecial armazenaNivelUsuarioEspecial = usuarioEspecial.getNivelBeneficio();
+            if (getLivros().size() <= armazenaNivelUsuarioEspecial.getLIMITE_LIVROS()) {
                 int cont = 0;
                 for (Livro liv : livros) {
                     for (Livro liv2 : biblioteca.getLivros()) {
@@ -53,24 +54,8 @@ public class Emprestimo {
                     }
                 }
             }
-        } else {
-            if (usuarioEspecial.getNivelBeneficio().equals("Usuário Elite")) {
-
-            } else {
-                if (usuarioEspecial.getNivelBeneficio().equals("Usuário Premium")) {
-
-                } else {
-                    if (usuarioEspecial.getNivelBeneficio().equals("Usuário Plus")) {
-                    } else {
-                        if (usuarioEspecial.getNivelBeneficio().equals("Usuário Básico")) {
-
-                        }
-                    }
-                }
-            }
         }
     }
-
 
     public void addLivros(Livro liv) {
         this.livros.add(liv);

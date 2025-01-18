@@ -16,7 +16,7 @@ public class Main {
         biblioteca.addLivros(livro1);
         biblioteca.addLivros(livro2);
         System.out.println("Livros presentes na biblioteca: " + biblioteca.getLivros().size() + "\n");
-        GerenciaLivros.tornarIndisponivel(livro1, biblioteca);
+        GerenciaLivros.tornarDisponivel(livro1, biblioteca);
         GerenciaLivros.tornarDisponivel(livro2, biblioteca);
         System.out.println("Quantidade de livros disponíveis: " + biblioteca.getLivrosDisponiveis().size() + "\n");
         System.out.println("Livros disponíveis: " + biblioteca.getLivrosDisponiveis() + "\n");
