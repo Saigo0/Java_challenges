@@ -25,8 +25,8 @@ public class Emprestimo {
     }
 
     public void realizaEmprestimo(UsuarioEspecial usuarioEspecial, Biblioteca biblioteca) {
-        if (usuarioEspecial.getNivelBeneficio().equals(NiveisEnum.DIAMANTE.name())) {
-            if (getLivros().size() <= NiveisEnum.DIAMANTE.getLimiteLivros()) {
+        if (usuarioEspecial.getNivelBeneficio().equals(CategoriasUsuarioEspecial.DIAMANTE.name())) {
+            if (getLivros().size() <= CategoriasUsuarioEspecial.DIAMANTE.getLIMITE_LIVROS()) {
                 int cont = 0;
                 for (Livro liv : livros) {
                     for (Livro liv2 : biblioteca.getLivros()) {
