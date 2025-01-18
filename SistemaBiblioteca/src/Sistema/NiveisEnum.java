@@ -2,7 +2,9 @@ package Sistema;
 
 public enum NiveisEnum {
 
-    DIAMANTE(12),
+    DIAMANTE(12) {
+
+    },
     ELITE(9),
     PRIMIUM(7),
     PLUS(5),
@@ -10,9 +12,11 @@ public enum NiveisEnum {
 
     private int limiteLivros;
 
-    private NiveisEnum(int limiteLivros) {
+    NiveisEnum(int limiteLivros) {
         this.limiteLivros = limiteLivros;
     }
+
+
 
     public int getLimiteLivros() {
         return this.limiteLivros;
