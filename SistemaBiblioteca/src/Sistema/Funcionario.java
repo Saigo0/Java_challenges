@@ -16,7 +16,7 @@ public class Funcionario extends Pessoa {
         this.setDataAdmissao(dataAdmissao);
         this.setTurno(turno);
     }
-
+    //
     public void setId(){
         this.id = Funcionario.cod++;
     }
