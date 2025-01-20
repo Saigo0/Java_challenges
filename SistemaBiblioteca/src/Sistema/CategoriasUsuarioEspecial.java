@@ -1,8 +1,8 @@
 package Sistema;
 
 public enum CategoriasUsuarioEspecial {
-    DIAMANTE(12, 150.0),
-    ELITE(9, 100.0),
+    DIAMANTE(12, 90.0),
+    ELITE(9, 75.0),
     PRIMIUM(7, 50.0),
     PLUS(5, 25.0),
     BASICO(3, 15.0);
@@ -28,6 +28,7 @@ public enum CategoriasUsuarioEspecial {
             if (categoria.getVALOR_PAGAMENTO_ANUAL() == valorPago) {
                 return categoria;
             }
-        } return null;
+        }
+        return null;
     }
 }

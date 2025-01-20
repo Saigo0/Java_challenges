@@ -9,9 +9,10 @@ public class Main {
         System.out.println(userEspecial.getNivelBeneficio());
 
 
-        Livro livro1 = new Livro("O alienista", "Machado de Assis", "Casa blanca", 1998, 207, "Rio de Janeiro", 25, 10);
-        Livro livro2 = new Livro("O pequeno príncepe", "Audos", "blanca", 2001, 195, "Rio de Janeiro", 20, 8.47);
+        Livro livro1 = new Livro(1235,"O alienista", "Machado de Assis", 6,"Casa blanca", 1998, 207, "Rio de Janeiro", 25, 10);
+        Livro livro2 = new Livro(15151, "O pequeno príncepe", "Audos", 1, "blanca", 2001, 195, "Rio de Janeiro", 20, 8.47);
         System.out.println("Disponibilidade: " + livro1.getDisponibilidade() + "\n");
+        System.out.println("Disponibilidade: " + livro2.getDisponibilidade() + "\n");
 
         biblioteca.addLivros(livro1);
         biblioteca.addLivros(livro2);
@@ -28,8 +29,5 @@ public class Main {
         emp1.realizaEmprestimo(userEspecial, biblioteca);
         System.out.println(livro1.getDisponibilidade());
         System.out.println(livro2.getDisponibilidade());
-
-
-
     }
 }

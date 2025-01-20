@@ -8,7 +8,7 @@ public class UsuarioEspecial extends UsuarioSimples {
     //Podem pegar mais de 10 livros de uma vez, não pagam ou recebem descontos em multas geradas por atrasos, Prazo de devolução estendido
 
     public UsuarioEspecial(String nome, String RG, String CPF, String dataNascimento, String email, String endereco, String telefone, String nomeUsuario, String nivelAcesso, String senha, String dataCadastro, String preferencias, double valorPago) {
-        super(nome, RG, CPF, dataNascimento, email, endereco, telefone, nomeUsuario, nivelAcesso,  senha, dataCadastro, preferencias);
+        super(nome, RG, CPF, dataNascimento, email, endereco, telefone, nomeUsuario, nivelAcesso, senha, dataCadastro, preferencias);
         Biblioteca biblioteca = Biblioteca.getInstancia();
         this.setNivelBeneficio(valorPago);
     }
