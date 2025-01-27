@@ -8,7 +8,6 @@ public class UsuarioSimples extends Usuario {
     }
 
     public void setPreferencias(String preferencias) {
-        //Usar, aqui, um método que irá calcular a preferência
         this.preferencias = preferencias;
     }
 

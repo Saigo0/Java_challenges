@@ -2,8 +2,6 @@ package Sistema;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Biblioteca {
     private static Biblioteca instanciaUnica;
@@ -23,16 +21,6 @@ public class Biblioteca {
     private final ArrayList<Equipamento> equipamentos;
     private final ArrayList<Emprestimo> emprestimos;
     private final ArrayList<Administrador> administradores;
-    private static final Map<Double, String> niveis = new HashMap<>();
-    private final Date now = new Date();
-
-    static {
-        niveis.put(150.0, NiveisEnum.DIAMANTE.name());
-        niveis.put(100.0, NiveisEnum.ELITE.name());
-        niveis.put(50.0, NiveisEnum.PRIMIUM.name() );
-        niveis.put(25.0, NiveisEnum.PLUS.name());
-        niveis.put(15.0, NiveisEnum.BASICO.name());
-    }
 
     private Biblioteca(String nome, String endereco, String horarioFuncionamento, int capacidade, String tipo) {
         this.setId();
@@ -64,10 +52,6 @@ public class Biblioteca {
             throw new IllegalStateException("A Biblioteca ainda não foi inicializada.");
         }
         return instanciaUnica;
-    }
-
-    public String verificaNivelBeneficio(double valorPago) {
-        return niveis.getOrDefault(valorPago, "Valor pago não condiz com nenhum valor de assinatura existente");
     }
 
     private void setId() {

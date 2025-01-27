@@ -6,6 +6,7 @@ public class Livro {
     private int ISBN;
     private String titulo;
     private String autor;
+    private GenerosLiterarios generoLiterario;
     private String editora;
     private int anoEdicao;
     private int numPaginas;
@@ -14,12 +15,12 @@ public class Livro {
     private double precoVenda;
     private double precoCompra;
 
-
-    public Livro(String titulo, String autor, String editora, int anoEdicao, int numPaginas, String localEdicao, double precoVenda, double precoCompra) {
+    public Livro(int ISBN, String titulo, String autor, int ValorAssociadoGeneroLiterario, String editora, int anoEdicao, int numPaginas, String localEdicao, double precoVenda, double precoCompra) {
         this.setId();
         this.setISBN(ISBN);
         this.setTitulo(titulo);
         this.setAutor(autor);
+        this.setGeneroLiterario(ValorAssociadoGeneroLiterario);
         this.setEditora(editora);
         this.setAnoEdicao(anoEdicao);
         this.setNumPaginas(numPaginas);
@@ -51,6 +52,15 @@ public class Livro {
             return true;
         } else
             return false;
+    }
+
+    public boolean setGeneroLiterario(int valorAssociado) {
+        for (GenerosLiterarios genero : GenerosLiterarios.values()) {
+            if (genero.getVALOR_ASSOCIADO() == valorAssociado) {
+                this.generoLiterario = genero;
+                return true;
+            }
+        } return false; //Ideal seria retornar uma exception
     }
 
     public boolean setEditora(String editora) {
@@ -121,6 +131,10 @@ public class Livro {
         return this.autor;
     }
 
+    public GenerosLiterarios getGeneroLiterario() {
+        return this.generoLiterario;
+    }
+
     public String getEditora() {
         return this.editora;
     }
@@ -154,6 +168,7 @@ public class Livro {
                 "ISBN: " + this.getISBN() + "\n" +
                 "Título: " + this.getTitulo() + "\n" +
                 "Autor: " + this.getAutor() + "\n" +
+                "Gênero: " + this.getGeneroLiterario() + "\n" +
                 "Editora: " + this.getEditora() + "\n" +
                 "Ano de edição: " + this.getAnoEdicao() + "\n" +
                 "Número de páginas: " + this.getNumPaginas() + "\n" +

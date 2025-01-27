@@ -1,6 +1,6 @@
 package Sistema;
 
-public abstract class Usuario extends Pessoa {
+public class Usuario extends Pessoa {
     public static int cod = 1;
     private int id;
     private String nomeUsuario;
