@@ -1,10 +1,13 @@
 package Sistema;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Fornecedor {
     private static int cod = 1;
     private int id;
     private String cnpj;
-    private String nome;
+    private String nomeEmpresa;
     private String telefone;
     private String email;
     private String endereco;
@@ -12,7 +15,9 @@ public class Fornecedor {
     private int prazoEntrega;
     private String reputacao;
     private String observacoes;
-    private boolean status;
+    private boolean statusProduto;
+    private List<Livro> livrosCatalogo;
+    private List<Equipamento> equipamentosCatalogo;
 
     public Fornecedor(String cnpj, String nome, String email, String telefone, String endereco, String categoria, int prazoEntrega, String reputacao, String observacoes) {
         this.setId();
@@ -25,7 +30,17 @@ public class Fornecedor {
         this.setPrazoEntrega(prazoEntrega);
         this.setReputacao(reputacao);
         this.setObservacoes(observacoes);
-        this.setStatus(true);
+        this.setStatusProduto(true);
+        livrosCatalogo = new ArrayList<Livro>();
+        equipamentosCatalogo = new ArrayList<Equipamento>();
+    }
+
+    public void addLivroCatalogo(Livro livro) {
+        this.livrosCatalogo.add(livro);
+    }
+
+    public void addEquipamentoCatalogo(Equipamento equipamento) {
+        this.equipamentosCatalogo.add(equipamento);
     }
 
     private void setId() {
@@ -42,7 +57,7 @@ public class Fornecedor {
 
     private boolean setNome(String nome) {
         if(!nome.isBlank()){
-            this.nome = nome;
+            this.nomeEmpresa = nome;
             return true;
         } else
             return false;
@@ -97,8 +112,8 @@ public class Fornecedor {
         this.observacoes = observacoes;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setStatusProduto(boolean statusProduto) {
+        this.statusProduto = statusProduto;
     }
 
     public int getId() {
@@ -109,8 +124,8 @@ public class Fornecedor {
         return this.cnpj;
     }
 
-    public String getNome() {
-        return this.nome;
+    public String getNomeEmpresa() {
+        return this.nomeEmpresa;
     }
 
     public String getEmail() {
@@ -141,14 +156,22 @@ public class Fornecedor {
         return this.observacoes;
     }
 
-    public boolean getStatus() {
-        return this.status;
+    public boolean getStatusProduto() {
+        return this.statusProduto;
+    }
+
+    public List<Livro> getLivrosCatalogo() {
+        return this.livrosCatalogo;
+    }
+
+    public List<Equipamento> getEquipamentosCatalogo() {
+        return this.equipamentosCatalogo;
     }
 
     public String toString() {
         return  "ID: " + this.getId() + "\n" +
                 "CNPJ: " + this.getCnpj() + "\n" +
-                "Nome: " + this.getNome() + "\n" +
+                "Nome: " + this.getNomeEmpresa() + "\n" +
                 "Telefone: " + this.getTelefone() + "\n" +
                 "Email: " + this.getEmail() + "\n" +
                 "Endereço: " + this.getEndereco() + "\n" +
@@ -156,7 +179,7 @@ public class Fornecedor {
                 "Prazo de entrega: " + this.getPrazoEntrega() + "\n" +
                 "Reputação: " + this.getReputacao() + "\n" +
                 "Observacoes: " + this.getObservacoes() + "\n" +
-                "Status: " + this.getStatus() + "\n";
+                "Status: " + this.getStatusProduto() + "\n";
     }
 
 }

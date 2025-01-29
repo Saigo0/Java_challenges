@@ -80,5 +80,4 @@ public class Usuario extends Pessoa {
                 "Senha: " + this.getSenha() + "\n" +
                 "Data de cadastro: " + this.getDataCadastro() + "\n";
     }
-
 }

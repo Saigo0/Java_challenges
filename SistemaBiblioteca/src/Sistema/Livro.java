@@ -1,6 +1,6 @@
 package Sistema;
 
-public class Livro {
+public class Livro extends Produto {
     public static int cod = 1;
     private int id;
     private int ISBN;
@@ -16,6 +16,7 @@ public class Livro {
     private double precoCompra;
 
     public Livro(int ISBN, String titulo, String autor, int ValorAssociadoGeneroLiterario, String editora, int anoEdicao, int numPaginas, String localEdicao, double precoVenda, double precoCompra) {
+        super();
         this.setId();
         this.setISBN(ISBN);
         this.setTitulo(titulo);

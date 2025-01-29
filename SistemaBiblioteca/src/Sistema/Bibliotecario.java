@@ -27,10 +27,10 @@ public class Bibliotecario extends Funcionario {
     }
 
     public boolean setValorCRB(double valorCRB) {
-        if(valorCRB > 0){
+        if (valorCRB > 0) {
             this.valorCRB = valorCRB;
             return true;
-        }  else
+        } else
             return false;
     }
 
@@ -42,7 +42,7 @@ public class Bibliotecario extends Funcionario {
         this.especializacoes.add(umaEspecializacao);
     }
 
-    public boolean pagarCRB(double valor){
+    public boolean pagarCRB(double valor) {
         return valor > this.getValorCRB();
     }
 
