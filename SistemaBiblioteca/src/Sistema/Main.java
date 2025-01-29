@@ -25,7 +25,6 @@ public class Main {
         Equipamento equipamento3 = new Equipamento(8401, "Computador", "11/12/2015", "Eletronico", "LG", "Bom", true, 3000);
         System.out.println("Disponibilidade do equipamento 3: " + equipamento3.getStatus() + "\n");
 
-
         System.out.println("Livros da biblioteca: " + biblioteca.getLivros());
         System.out.println("Livros indisponíveis: " + biblioteca.getLivrosIndisponiveis());
         System.out.println("Livros disponíveis: " + biblioteca.getLivrosDisponiveis());
@@ -39,7 +38,7 @@ public class Main {
         compra.addLivros(livro1);
         compra.addEquipamentos(equipamento1);
         compra.addEquipamentos(equipamento2);
-//        compra.addLivros(livro2);
+        compra.addLivros(livro2);
 //        compra.addLivros(livro3);
 
         System.out.println("----------");
