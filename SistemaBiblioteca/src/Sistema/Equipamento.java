@@ -93,7 +93,7 @@ public class Equipamento extends Produto {
         return this.estado;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -119,7 +119,7 @@ public class Equipamento extends Produto {
                 "Categoria: " + this.getCategoria() + "\n" +
                 "Marca: " + this.getMarca() + "\n" +
                 "Estado: " + this.getEstado() + "\n" +
-                "Status: " + this.isStatus() + "\n" +
+                "Status: " + this.getStatus() + "\n" +
                 "Preço de compra: " + this.getPrecoCompra() + "\n";
     }
 }

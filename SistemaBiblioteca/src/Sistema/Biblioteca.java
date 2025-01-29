@@ -1,7 +1,6 @@
 package Sistema;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Biblioteca {
     private static Biblioteca instanciaUnica;
@@ -19,6 +18,8 @@ public class Biblioteca {
     private final ArrayList<Usuario> usuarios;
     private final ArrayList<Fornecedor> fornecedores;
     private final ArrayList<Equipamento> equipamentos;
+    private final ArrayList<Equipamento> equipamentosAtivos;
+    private final ArrayList<Equipamento> equipamentosInativos;
     private final ArrayList<Emprestimo> emprestimos;
     private final ArrayList<Administrador> administradores;
 
@@ -36,6 +37,8 @@ public class Biblioteca {
         usuarios = new ArrayList<Usuario>();
         fornecedores = new ArrayList<Fornecedor>();
         equipamentos = new ArrayList<Equipamento>();
+        equipamentosAtivos = new ArrayList<Equipamento>();
+        equipamentosInativos = new ArrayList<Equipamento>();
         emprestimos = new ArrayList<Emprestimo>();
         administradores = new ArrayList<Administrador>();
     }
@@ -133,8 +136,14 @@ public class Biblioteca {
         this.fornecedores.add(umFornecedor);
     }
 
-    public void addEquipamentos(Equipamento umEquipamento) {
-        this.equipamentos.add(umEquipamento);
+    public void addEquipamento(Equipamento umEquipamento) { this.equipamentos.add(umEquipamento); }
+
+    public void addEquipamentoAtivo(Equipamento umEquipamento) {
+        this.equipamentosAtivos.add(umEquipamento);
+    }
+
+    public void addEquipamentoInativo(Equipamento umEquipamento) {
+        this.equipamentosInativos.add(umEquipamento);
     }
 
     public void addEmprestimos(Emprestimo umEmprestimo) {
@@ -161,8 +170,16 @@ public class Biblioteca {
         this.fornecedores.remove(umFornecedor);
     }
 
-    public void removeEquipamentos(Equipamento umEquipamento) {
+    public void removeEquipamento(Equipamento umEquipamento) {
         this.equipamentos.remove(umEquipamento);
+    }
+
+    public void removeEquipamentoAtivo(Equipamento umEquipamento) {
+        this.equipamentosAtivos.remove(umEquipamento);
+    }
+
+    public void removeEquipamentoInativo(Equipamento umEquipamento) {
+        this.equipamentosInativos.remove(umEquipamento);
     }
 
     public void removeEmprestimos(Emprestimo umEmprestimo) {
@@ -199,6 +216,14 @@ public class Biblioteca {
 
     public ArrayList<Equipamento> getEquipamentos() {
         return this.equipamentos;
+    }
+
+    public ArrayList<Equipamento> getEquipamentosAtivos() {
+        return this.equipamentosAtivos;
+    }
+
+    public ArrayList<Equipamento> getEquipamentosInativos() {
+        return this.equipamentosInativos;
     }
 
     public ArrayList<Administrador> getAdministradores() {
@@ -243,7 +268,7 @@ public class Biblioteca {
 
     public String imprimeEquipamentos() {
         String texto = "";
-        for (Equipamento equip : equipamentos) {
+        for (Equipamento equip : equipamentosAtivos) {
             texto += equip.toString();
         }
         return texto;

@@ -2,7 +2,7 @@ package Sistema;
 
 import java.util.ArrayList;
 
-public class GerenciadorDeEmprestimos {
+public abstract class GerenciadorDeEmprestimos {
     private final Biblioteca biblioteca;
     private final ArrayList<Emprestimo> emprestimos;
 

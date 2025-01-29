@@ -95,9 +95,9 @@ public class Emprestimo {
     public String toString() {
         return "ID: " + id + "\n" +
                 "Data do Empréstimo: " + dataEmprestimos + "\n" +
-                "Descrição: " + descricao + "\n" +
-                "Status: " + status + "\n" +
-                "Data de Devolução Real: " + dataDevolucaoReal + "\n";
+                "Descrição: " + this.descricao + "\n" +
+                "Status: " + this.status + "\n" +
+                "Data de Devolução Real: " + this.dataDevolucaoReal + "\n";
     }
 }
 

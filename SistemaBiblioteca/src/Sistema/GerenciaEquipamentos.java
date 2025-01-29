@@ -4,12 +4,14 @@ public class GerenciaEquipamentos {
     public GerenciaEquipamentos() {
     }
     public static void tornarStatusDisponivel(Equipamento equipamento, Biblioteca biblioteca) {
-        biblioteca.addEquipamentos(equipamento);
+        biblioteca.removeEquipamentoInativo(equipamento);
+        biblioteca.addEquipamentoAtivo(equipamento);
         equipamento.setStatus(true);
     }
 
     public static void tornarStatusIndisponivel(Equipamento equipamento, Biblioteca biblioteca) {
-        biblioteca.removeEquipamentos(equipamento);
+        biblioteca.removeEquipamentoAtivo(equipamento);
+        biblioteca.addEquipamentoInativo(equipamento);
         equipamento.setStatus(false);
     }
 }
