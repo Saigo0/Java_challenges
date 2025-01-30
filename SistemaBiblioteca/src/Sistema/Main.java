@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[]args) {
         Biblioteca biblioteca = Biblioteca.getInstancia("Biblioteca do Jonathan", "Rua Alameda", "11:00 - 19:00", 1000, "Pública");
-        UsuarioEspecial userEspecial = new UsuarioEspecial("Jonathan", "MG-813.834.34", "14375229632", "22/12/2004", "jonathanrezendp@gmail.com", "Rua Marcílio João da Silveira", "998574479", "DevSanttos", "Básico", "Abrhdafa", "12/12/2024", "Nenhuma", 20);
+        UsuarioEspecial userEspecial = new UsuarioEspecial("Jonathan", "MG-813.834.34", "14375229632", "22/12/2004", "jonathanrezendp@gmail.com", "Rua Marcílio João da Silveira", "998574479", "DevSanttos", "Básico", "Abrhdafa", "12/12/2024", "Nenhuma", 15);
 //        Usuario usuario = new Usuario("Jonathan Santos", "MG-813.834.34", "14375229632", "22/12/2004", "jonathanrezendp@gmail.com", "Rua Marcílio João da Silveira", "998574479", "Dev", "Avançado", "jalfj", "114141");
         GerenciadorDeCompra gerenciadorDeCompra = new GerenciadorDeCompra();
         Compra compra = new Compra();
@@ -14,7 +14,7 @@ public class Main {
         GerenciadorDeEmprestimos gerenciadorDeEmprestimos = new GerenciadorDeEmprestimos();
         System.out.println(gerenciadorDeEmprestimos.getEmprestimos());
 
-        gerenciadorDeEmprestimos.realizaEmprestimo(emprestimo, userEspecial);
+        System.out.println(gerenciadorDeEmprestimos.realizaEmprestimo(emprestimo, userEspecial));
 
 
         Livro livro1 = new Livro(1235,"O alienista", "Machado de Assis", 6,"Casa blanca", 1998, 207, "Rio de Janeiro", 25, 10);
