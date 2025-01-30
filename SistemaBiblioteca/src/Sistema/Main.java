@@ -1,13 +1,21 @@
 package Sistema;
 
+import java.io.IOException;
+
 public class Main {
 
     public static void main(String[]args) {
         Biblioteca biblioteca = Biblioteca.getInstancia("Biblioteca do Jonathan", "Rua Alameda", "11:00 - 19:00", 1000, "Pública");
-//        UsuarioEspecial userEspecial = new UsuarioEspecial("Jonathan", "MG-813.834.34", "14375229632", "22/12/2004", "jonathanrezendp@gmail.com", "Rua Marcílio João da Silveira", "998574479", "DevSanttos", "Básico", "Abrhdafa", "12/12/2024", "Nenhuma", 15);
+        UsuarioEspecial userEspecial = new UsuarioEspecial("Jonathan", "MG-813.834.34", "14375229632", "22/12/2004", "jonathanrezendp@gmail.com", "Rua Marcílio João da Silveira", "998574479", "DevSanttos", "Básico", "Abrhdafa", "12/12/2024", "Nenhuma", 20);
 //        Usuario usuario = new Usuario("Jonathan Santos", "MG-813.834.34", "14375229632", "22/12/2004", "jonathanrezendp@gmail.com", "Rua Marcílio João da Silveira", "998574479", "Dev", "Avançado", "jalfj", "114141");
         GerenciadorDeCompra gerenciadorDeCompra = new GerenciadorDeCompra();
         Compra compra = new Compra();
+        Emprestimo emprestimo = new Emprestimo("14", "hfak");
+        GerenciadorDeEmprestimos gerenciadorDeEmprestimos = new GerenciadorDeEmprestimos();
+        System.out.println(gerenciadorDeEmprestimos.getEmprestimos());
+
+        gerenciadorDeEmprestimos.realizaEmprestimo(emprestimo, userEspecial);
+
 
         Livro livro1 = new Livro(1235,"O alienista", "Machado de Assis", 6,"Casa blanca", 1998, 207, "Rio de Janeiro", 25, 10);
         System.out.println("Disponibilidade livro 1: " + livro1.getDisponibilidade() + "\n");
@@ -30,7 +38,6 @@ public class Main {
         System.out.println("Livros disponíveis: " + biblioteca.getLivrosDisponiveis());
 
         Fornecedor fornecedor = new Fornecedor("14", "ForneceEficiente", "fa", "f", "f", "fa", 90, "Boa", "hfa");
-
         fornecedor.addLivroCatalogo(livro1);
         fornecedor.addLivroCatalogo(livro2);
         fornecedor.addLivroCatalogo(livro3);

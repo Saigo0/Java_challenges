@@ -2,7 +2,7 @@ package Sistema;
 
 import java.util.ArrayList;
 
-public abstract class GerenciadorDeEmprestimos {
+public class GerenciadorDeEmprestimos {
     private final Biblioteca biblioteca;
     private final ArrayList<Emprestimo> emprestimos;
 
@@ -20,19 +20,18 @@ public abstract class GerenciadorDeEmprestimos {
     }
 
 
-    private boolean realizaEmprestimoUsuarioEspecial(Emprestimo emprestimo, UsuarioEspecial usuarioEspecial) {
+    private boolean realizaEmprestimoUsuarioEspecial(Emprestimo emprestimo, UsuarioEspecial usuarioEspecial) throws RuntimeException {
         CategoriasUsuarioEspecial nivelBeneficio = usuarioEspecial.getNivelBeneficio();
 
-        if (nivelBeneficio == null) {
-            //Tratar, futuramente, com as exeções
-            return false;
-        }
+            if (nivelBeneficio == null) {
+                return false;
+            }
 
         if (emprestimo.getLivros().size() > nivelBeneficio.getLIMITE_LIVROS()) {
             //Tratar, futuramente, com as exeções
             return false;
         }
-
+        // add a verificação de que a lista de emprestimo não pode estar em branco
         if (verificaDisponibilidadeLivros(emprestimo, biblioteca)) {
             for (Livro livro : emprestimo.getLivros()) {
                 GerenciaLivros.tornarIndisponivel(livro, biblioteca);
