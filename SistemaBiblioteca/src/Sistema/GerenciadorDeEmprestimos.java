@@ -19,9 +19,9 @@ public class GerenciadorDeEmprestimos {
         }
     }
 
-    private boolean realizaEmprestimoUsuarioEspecial(Emprestimo emprestimo, UsuarioEspecial usuarioEspecial) throws RuntimeException {
+    private boolean realizaEmprestimoUsuarioEspecial(Emprestimo emprestimo, UsuarioEspecial usuarioEspecial) {
         CategoriasUsuarioEspecial nivelBeneficio = usuarioEspecial.getNivelBeneficio();
-        if (nivelBeneficio == null || emprestimo.getLivros().isEmpty()) {
+        if (nivelBeneficio == null && emprestimo.getLivros().isEmpty()) {
             return false;
         }
 

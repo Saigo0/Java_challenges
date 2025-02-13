@@ -30,6 +30,7 @@ public class GerenciadorDeCompra {
                 }
                 compra.setStatus(true);
                 this.historicoCompras.add(compra);
+                //modificar a disponibilidade do livro chamando o método gerencia livro
                 System.out.println("Compra de livro's realizada com sucesso!");
                 return true;
             }

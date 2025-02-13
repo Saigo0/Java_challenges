@@ -24,12 +24,7 @@ public class Main {
         System.out.println("Disponibilidade livro 3: " + livro3.getDisponibilidade() + "\n");
 
 
-        emprestimo.addLivros(livro1);
-        emprestimo.addLivros(livro2);
-        emprestimo.addLivros(livro3);
 
-        gerenciadorDeEmprestimos.realizaEmprestimo(emprestimo, userEspecial);
-        System.out.println(gerenciadorDeEmprestimos.getEmprestimos());
 
         Equipamento equipamento1 = new Equipamento(4214, "Televisão", "11/12/2015", "Eletronico", "LG", "Bom", true, 1000);
         System.out.println("Disponibilidade do equipamento 1: " + equipamento1.getStatus() + "\n");
@@ -82,5 +77,13 @@ public class Main {
         System.out.println("Status da compra: " + compra.getStatus() + '\n');
 
         System.out.println("Compras já realizadas pelo sistema: " + gerenciadorDeCompra.getHistoricoCompras().size());
+
+        emprestimo.addLivros(livro1);
+        emprestimo.addLivros(livro2);
+
+        System.out.println(gerenciadorDeEmprestimos.realizaEmprestimo(emprestimo, userEspecial));
+        System.out.println("Emprestimos já realizados: " + gerenciadorDeEmprestimos.getEmprestimos());
+        //alteramos a disponibilidade, mas ainda temos que adicionar em na classe emprestimo uma lista de livros que já estão emprestados e modificar a lista já existente para o nome de carrinho de compra
+        //devemos limpar essa lista toda as vezes que finalizarmos um emprestimo
     }
 }
