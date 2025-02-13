@@ -13,12 +13,10 @@ public class GerenciadorDeCompra {
     }
 
     public boolean realizaPedidoDeCompra(Compra compra, Fornecedor fornecedor, boolean confirmacaoCompra) {
-        if (compra.getLivros() != null) {
-            return realizaPedidoCompraLivro(compra, fornecedor, true);
-        } else {
-            if (compra.getEquipamentos() != null) {
-                return realizaPedidoCompraEquipamento(compra, fornecedor, confirmacaoCompra);
-            }
+        if (compra.getLivros() != null && compra.getEquipamentos() != null) {
+            realizaPedidoCompraLivro(compra, fornecedor, true);
+            realizaPedidoCompraEquipamento(compra, fornecedor, true);
+            return true;
         }
         return false;
     }
@@ -61,6 +59,8 @@ public class GerenciadorDeCompra {
         List<Livro> listaCompraLivros = compra.getLivros();
         for (Livro livro : listaCompraLivros) {
             if (!fornecedor.getLivrosCatalogo().contains(livro)) {
+                //tratar, futuramente, com exeception
+                System.out.println("O livro de nome: '" + livro.getTitulo() + "', não pertence ao catálogo do fornecedor");
                 return false;
             }
         }
@@ -72,6 +72,8 @@ public class GerenciadorDeCompra {
 
         for (Equipamento equipamento : listaCompraEquipamentos) {
             if (!fornecedor.getEquipamentosCatalogo().contains(equipamento)) {
+                //tratar, futuramente, com exeception
+                System.out.println("O equipamento de nome: '" + equipamento.getNome() + "', não pertence ao catálogo do fornecedor");
                 return false;
             }
         }

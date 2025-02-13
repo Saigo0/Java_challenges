@@ -23,6 +23,7 @@ public class Emprestimo {
 
     public void addLivros(Livro livro) {
         if (livro != null && !this.livros.contains(livro)) {
+            //realizar um for para verificar se os livros add estão na biblioteca e fazer o mesmo com o add de compra
             this.livros.add(livro);
         }
     }
