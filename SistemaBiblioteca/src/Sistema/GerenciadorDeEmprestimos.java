@@ -1,21 +1,25 @@
 package Sistema;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class GerenciadorDeEmprestimos {
     private final Biblioteca biblioteca;
-    private final ArrayList<Emprestimo> historicoEmprestimo;
+    private final ArrayList<Emprestimo> historicoEmprestimosRealizados;
+    private final ArrayList<Emprestimo> historicoEmprestimosDevolvidos;
 
     public GerenciadorDeEmprestimos() {
         this.biblioteca = Biblioteca.getInstancia();
-        this.historicoEmprestimo = new ArrayList<Emprestimo>();
+        this.historicoEmprestimosRealizados = new ArrayList<Emprestimo>();
+        this.historicoEmprestimosDevolvidos = new ArrayList<Emprestimo>();
     }
 
-    public boolean realizaEmprestimo(Emprestimo emprestimo, Usuario usuario) {
-        if (usuario instanceof UsuarioEspecial usuarioEspecial) {
+    public boolean realizaEmprestimo(Emprestimo emprestimo, Pessoa pessoa) {
+        if (pessoa instanceof UsuarioEspecial usuarioEspecial) {
             return realizaEmprestimoUsuarioEspecial(emprestimo, usuarioEspecial);
         } else {
-            return realizaEmprestimoUsuarioSimples(emprestimo, usuario);
+            return realizaEmprestimoUsuarioSimples(emprestimo, pessoa);
         }
     }
 
@@ -26,6 +30,7 @@ public class GerenciadorDeEmprestimos {
         }
 
         if (emprestimo.getLivros().size() > nivelBeneficio.getLIMITE_LIVROS()) {
+            System.out.println("Emprestimo negado! O limite de livros foi atingido!");
             return false;
         }
 
@@ -33,22 +38,23 @@ public class GerenciadorDeEmprestimos {
             for (Livro livro : emprestimo.getLivros()) {
                 GerenciaLivros.tornarIndisponivel(livro, biblioteca);
             }
-//          Agora temos que mexer com a parte da data de devolução, tendo em vista que a data de Emprestimo é inserida na criação do objeto.
-//          Talvez criar um método próprio para calcular e gerenciar as devoluções (Acho que seria o melhor dos casos, uma vez que este médo tem que ser
-//          responsável somente por realizar o emprestimo do user especial) ou fazer tudo aqui mesmo)
+            emprestimo.setDataDevolucao(String.valueOf(calculaDataDevolucao(usuarioEspecial, emprestimo)));
             emprestimo.setStatus(true);
-            historicoEmprestimo.add(emprestimo);
+            historicoEmprestimosRealizados.add(emprestimo);
             System.out.println("Empréstimo relizado com sucesso para o usuário especial de nome " + usuarioEspecial.getNome() + "!");
+            System.out.println("A data de devolução para o emprestimo em questão é: " + emprestimo.getDataDevolucao());
             return true;
         }
-        //Tratar, futuramente, com as exeções
         return false;
     }
 
-    private boolean realizaEmprestimoUsuarioSimples(Emprestimo emprestimo, Usuario usuario) {
-        final int limiteLivrosUsuarioSimples = 1;
-        if (emprestimo.getLivros().size() > limiteLivrosUsuarioSimples) {
-            //Tratar, futuramente, com as exeções
+    private boolean realizaEmprestimoUsuarioSimples(Emprestimo emprestimo, Pessoa pessoa) {
+        if (emprestimo.getLivros().isEmpty()) {
+            return false;
+        }
+
+        if (emprestimo.getLivros().size() > pessoa.getLimiteLivros()) {
+            System.out.println("Emprestimo negado! O limite de livros foi atingido!");
             return false;
         }
 
@@ -56,13 +62,72 @@ public class GerenciadorDeEmprestimos {
             for (Livro livro : emprestimo.getLivros()) {
                 GerenciaLivros.tornarIndisponivel(livro, biblioteca);
             }
+            emprestimo.setDataDevolucao(String.valueOf(calculaDataDevolucao(pessoa, emprestimo)));
             emprestimo.setStatus(true);
-            historicoEmprestimo.add(emprestimo);
-            System.out.println("Empréstimo relizado com sucesso para o usuário simples de nome " + usuario.getNome() + "!");
+            historicoEmprestimosRealizados.add(emprestimo);
+            System.out.println("Empréstimo relizado com sucesso para o usuário simples de nome " + pessoa.getNome() + "!");
+            System.out.println("A data de devolução para o emprestimo em questão é: " + emprestimo.getDataDevolucao());
             return true;
         }
-        //Tratar, futuramente, com as exeções
         return false;
+    }
+
+    public boolean devolveEmprestimo(Emprestimo emprestimo, Pessoa pessoa) {
+        if (pessoa instanceof UsuarioEspecial usuarioEspecial) {
+            //verificar a data de devolução, calcular multa, se possível, tornar os livros disponíveis, mudar o status do emprestimo para false, setar a dataDevolvida
+            if (!emprestimo.getStatus()) {
+                System.out.println("Erro ao realizar a devolução, posto que o empréstimo se encontra indisponível. (Status false)");
+                return false;
+            }
+
+            if (emprestimo.getLivros().isEmpty()) {
+                System.out.println("Erro ao realizar a devolução, posto que o emprestimo em questão está vazio");
+                return false;
+            }
+
+            for (Livro livro : emprestimo.getLivros()) {
+                GerenciaLivros.tornarDisponivel(livro, biblioteca);
+            }
+
+            emprestimo.setDataDevolvida(String.valueOf(LocalDate.now()));
+
+            if (calculaMultaEmprestimo(emprestimo, usuarioEspecial) > 0) {
+//                chamar o método de calcular multa
+//            if (caso tenha multas, informar ao usuário com um system)
+            }
+
+            emprestimo.setStatus(false);
+            historicoEmprestimosDevolvidos.add(emprestimo);
+            System.out.println("Emprestimo devolvido com sucesso!");
+            return true;
+        } else {
+//            pessoas que não são os userEspeciais
+            if (!emprestimo.getStatus()) {
+                System.out.println("Erro ao realizar a devolução, posto que o empréstimo se encontra indisponível. (Status false)");
+                return false;
+            }
+
+            if (emprestimo.getLivros().isEmpty()) {
+                System.out.println("Erro ao realizar a devolução, posto que o emprestimo em questão está vazio");
+                return false;
+            }
+
+            for (Livro livro : emprestimo.getLivros()) {
+                GerenciaLivros.tornarDisponivel(livro, biblioteca);
+            }
+
+            emprestimo.setDataDevolvida(String.valueOf(LocalDate.now()));
+
+            if (calculaMultaEmprestimo(emprestimo, pessoa) > 0) {
+//            if (caso tenha multas, informar ao usuário com um system)
+                //chamar o método de calcular multa
+            }
+
+            emprestimo.setStatus(false);
+            historicoEmprestimosDevolvidos.add(emprestimo);
+            System.out.println("Emprestimo devolvido com sucesso!");
+            return true;
+        }
     }
 
     private boolean verificaDisponibilidadeLivros(Emprestimo emprestimo, Biblioteca biblioteca) {
@@ -77,15 +142,32 @@ public class GerenciadorDeEmprestimos {
         return true;
     }
 
-    public void devolveEmprestimo(Emprestimo emprestimo) {
-        emprestimo.getLivros().forEach(livro -> GerenciaLivros.tornarDisponivel(livro, biblioteca));
-        emprestimo.setStatus(false);
-        emprestimo.setDataDevolvida("");
-        //depois verificar se o emprestimo foi devolvido na data correta e calcular uma multa em cima de tal ponto
+    private LocalDate calculaDataDevolucao(Pessoa pessoa, Emprestimo emprestimo) {
+        try {
+            LocalDate dataDevolucao = emprestimo.getDataEmprestimo();
+            if (pessoa instanceof UsuarioEspecial usuarioEspecial) {
+                return dataDevolucao.plusDays(usuarioEspecial.getNivelBeneficio().getPRAZO_EMPRESTIMO());
+            } else {
+                return dataDevolucao.plusDays(10);
+            }
+        } catch (DateTimeParseException e) {
+            System.out.println("Erro ao realizar o parse da data informada!" + e.getMessage());
+            return null;
+        }
     }
 
-    public ArrayList<Emprestimo> getHistoricoEmprestimo() {
-        return historicoEmprestimo;
+    private double calculaMultaEmprestimo(Emprestimo emprestimo, Pessoa pessoa) {
+        if (emprestimo.getDataDevolucao().isBefore(emprestimo.getDataDevolvida())) {
+
+        } return 0;
+    }
+
+    public ArrayList<Emprestimo> getHistoricoEmprestimosRealizados() {
+        return this.historicoEmprestimosRealizados;
+    }
+
+    public ArrayList<Emprestimo> getHistoricoEmprestimosDevolvidos() {
+        return this.historicoEmprestimosDevolvidos;
     }
 }
 

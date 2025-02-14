@@ -7,11 +7,13 @@ public class Main {
     public static void main(String[] args) {
         Biblioteca biblioteca = Biblioteca.getInstancia("Biblioteca do Jonathan", "Rua Alameda", "11:00 - 19:00", 1000, "Pública");
         UsuarioEspecial userEspecial = new UsuarioEspecial("Jonathan", "MG-813.834.34", "14375229632", "22/12/2004", "jonathanrezendp@gmail.com", "Rua Marcílio João da Silveira", "998574479", "DevSanttos", "Básico", "Abrhdafa", "12/12/2024", "Nenhuma", 15);
-//        Usuario usuario = new Usuario("Jonathan Santos", "MG-813.834.34", "14375229632", "22/12/2004", "jonathanrezendp@gmail.com", "Rua Marcílio João da Silveira", "998574479", "Dev", "Avançado", "jalfj", "114141");
+        Usuario usuario = new Usuario("Jonathan Santos", "MG-813.834.34", "14375229632", "22/12/2004", "jonathanrezendp@gmail.com", "Rua Marcílio João da Silveira", "998574479", "Dev", "Avançado", "jalfj", "114141");
         GerenciadorDeCompra gerenciadorDeCompra = new GerenciadorDeCompra();
         Compra compra = new Compra();
         Emprestimo emprestimo = new Emprestimo("2015-02-28","Emprestimo realizado com sucesso e sem falhas do sistema");
         GerenciadorDeEmprestimos gerenciadorDeEmprestimos = new GerenciadorDeEmprestimos();
+
+
 
         Fornecedor fornecedor = new Fornecedor("14", "ForneceEficiente", "fa", "f", "f", "fa", 90, "Boa", "hfa");
         Fornecedor fornecedor2 = new Fornecedor("14794173", "ForneceSempre", "fa", "f", "f", "fa", 30, "Ótima", "Nenhuma");
@@ -25,9 +27,7 @@ public class Main {
         Livro livro3 = new Livro(14141, "O Ladrão de casaca", "Audos", 1, "blanca", 2001, 195, "Rio de Janeiro", 20, 30);
         System.out.println("Disponibilidade livro 3: " + livro3.getDisponibilidade() + "\n");
 
-//        emprestimo.addLivros(livro1);
-//        emprestimo.addLivros(livro2);
-//        System.out.println(gerenciadorDeEmprestimos.realizaEmprestimo(emprestimo, userEspecial));
+
 
         Equipamento equipamento1 = new Equipamento(4214, "Televisão", "11/12/2015", "Eletronico", "LG", "Bom", true, 1000);
         System.out.println("Disponibilidade do equipamento 1: " + equipamento1.getStatus() + "\n");
@@ -79,5 +79,16 @@ public class Main {
         System.out.println("Status da compra: " + compra.getStatus() + '\n');
 
         System.out.println("Compras já realizadas pelo sistema: " + gerenciadorDeCompra.getHistoricoCompras().size());
+
+//        emprestimo.addLivros(livro1);
+//        emprestimo.addLivros(livro2);
+        System.out.println(emprestimo.getDataEmprestimo());
+        System.out.println(emprestimo.getDataDevolucao());
+
+        System.out.println(gerenciadorDeEmprestimos.realizaEmprestimo(emprestimo, usuario));
+
+        System.out.println(emprestimo.getDataEmprestimo());
+        System.out.println(emprestimo.getDataDevolucao());
+
     }
 }

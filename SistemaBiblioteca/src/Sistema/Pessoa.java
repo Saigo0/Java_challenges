@@ -10,6 +10,7 @@ public abstract class Pessoa {
     private String email = "";
     private String endereco = "";
     private String telefone = "";
+    private final int LIMITE_LIVROS = 1;
 
     public Pessoa(String nome, String RG, String CPF, String dataNascimento, String email, String endereco, String telefone) {
         this.setNome(nome);
@@ -96,6 +97,10 @@ public abstract class Pessoa {
 
     public String getTelefone() {
         return this.telefone;
+    }
+
+    public int getLimiteLivros() {
+        return this.LIMITE_LIVROS;
     }
 
     @Override

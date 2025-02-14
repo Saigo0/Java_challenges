@@ -1,5 +1,6 @@
 package Sistema;
 
+
 public class UsuarioSimples extends Usuario {
     private String preferencias;
 

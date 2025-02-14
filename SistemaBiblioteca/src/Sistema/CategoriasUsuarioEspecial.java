@@ -9,7 +9,6 @@ public enum CategoriasUsuarioEspecial {
 
     private final int LIMITE_LIVROS;
     private final int PRAZO_EMPRESTIMO;
-    //por livro? acho que sim
     private final double VALOR_PAGAMENTO_ANUAL;
 
 
