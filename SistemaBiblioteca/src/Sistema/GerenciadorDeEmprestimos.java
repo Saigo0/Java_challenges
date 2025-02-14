@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class GerenciadorDeEmprestimos {
     private final Biblioteca biblioteca;
-    private final ArrayList<Emprestimo> emprestimos;
+    private final ArrayList<Emprestimo> historicoEmprestimo;
 
     public GerenciadorDeEmprestimos() {
         this.biblioteca = Biblioteca.getInstancia();
-        this.emprestimos = new ArrayList<Emprestimo>();
+        this.historicoEmprestimo = new ArrayList<Emprestimo>();
     }
 
     public boolean realizaEmprestimo(Emprestimo emprestimo, Usuario usuario) {
@@ -21,21 +21,23 @@ public class GerenciadorDeEmprestimos {
 
     private boolean realizaEmprestimoUsuarioEspecial(Emprestimo emprestimo, UsuarioEspecial usuarioEspecial) {
         CategoriasUsuarioEspecial nivelBeneficio = usuarioEspecial.getNivelBeneficio();
-        if (nivelBeneficio == null && emprestimo.getLivros().isEmpty()) {
+        if (nivelBeneficio == null || emprestimo.getLivros().isEmpty()) {
             return false;
         }
 
         if (emprestimo.getLivros().size() > nivelBeneficio.getLIMITE_LIVROS()) {
-            //Tratar, futuramente, com as exeções
             return false;
         }
-        // add a verificação de que a lista de emprestimo não pode estar em branco
+
         if (verificaDisponibilidadeLivros(emprestimo, biblioteca)) {
             for (Livro livro : emprestimo.getLivros()) {
                 GerenciaLivros.tornarIndisponivel(livro, biblioteca);
             }
+//          Agora temos que mexer com a parte da data de devolução, tendo em vista que a data de Emprestimo é inserida na criação do objeto.
+//          Talvez criar um método próprio para calcular e gerenciar as devoluções (Acho que seria o melhor dos casos, uma vez que este médo tem que ser
+//          responsável somente por realizar o emprestimo do user especial) ou fazer tudo aqui mesmo)
             emprestimo.setStatus(true);
-            emprestimos.add(emprestimo);
+            historicoEmprestimo.add(emprestimo);
             System.out.println("Empréstimo relizado com sucesso para o usuário especial de nome " + usuarioEspecial.getNome() + "!");
             return true;
         }
@@ -55,7 +57,7 @@ public class GerenciadorDeEmprestimos {
                 GerenciaLivros.tornarIndisponivel(livro, biblioteca);
             }
             emprestimo.setStatus(true);
-            emprestimos.add(emprestimo);
+            historicoEmprestimo.add(emprestimo);
             System.out.println("Empréstimo relizado com sucesso para o usuário simples de nome " + usuario.getNome() + "!");
             return true;
         }
@@ -78,12 +80,12 @@ public class GerenciadorDeEmprestimos {
     public void devolveEmprestimo(Emprestimo emprestimo) {
         emprestimo.getLivros().forEach(livro -> GerenciaLivros.tornarDisponivel(livro, biblioteca));
         emprestimo.setStatus(false);
-        emprestimo.setDataDevolucaoReal("");
+        emprestimo.setDataDevolvida("");
         //depois verificar se o emprestimo foi devolvido na data correta e calcular uma multa em cima de tal ponto
     }
 
-    public ArrayList<Emprestimo> getEmprestimos() {
-        return emprestimos;
+    public ArrayList<Emprestimo> getHistoricoEmprestimo() {
+        return historicoEmprestimo;
     }
 }
 

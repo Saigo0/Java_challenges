@@ -1,5 +1,7 @@
 package Sistema;
 
+import java.time.LocalDate;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -8,7 +10,7 @@ public class Main {
 //        Usuario usuario = new Usuario("Jonathan Santos", "MG-813.834.34", "14375229632", "22/12/2004", "jonathanrezendp@gmail.com", "Rua Marcílio João da Silveira", "998574479", "Dev", "Avançado", "jalfj", "114141");
         GerenciadorDeCompra gerenciadorDeCompra = new GerenciadorDeCompra();
         Compra compra = new Compra();
-        Emprestimo emprestimo = new Emprestimo("14/12/2024", "Emprestimo realizado com sucesso e sem falhas do sistema");
+        Emprestimo emprestimo = new Emprestimo("2015-02-28","Emprestimo realizado com sucesso e sem falhas do sistema");
         GerenciadorDeEmprestimos gerenciadorDeEmprestimos = new GerenciadorDeEmprestimos();
 
         Fornecedor fornecedor = new Fornecedor("14", "ForneceEficiente", "fa", "f", "f", "fa", 90, "Boa", "hfa");
@@ -23,8 +25,9 @@ public class Main {
         Livro livro3 = new Livro(14141, "O Ladrão de casaca", "Audos", 1, "blanca", 2001, 195, "Rio de Janeiro", 20, 30);
         System.out.println("Disponibilidade livro 3: " + livro3.getDisponibilidade() + "\n");
 
-
-
+//        emprestimo.addLivros(livro1);
+//        emprestimo.addLivros(livro2);
+//        System.out.println(gerenciadorDeEmprestimos.realizaEmprestimo(emprestimo, userEspecial));
 
         Equipamento equipamento1 = new Equipamento(4214, "Televisão", "11/12/2015", "Eletronico", "LG", "Bom", true, 1000);
         System.out.println("Disponibilidade do equipamento 1: " + equipamento1.getStatus() + "\n");
@@ -36,7 +39,6 @@ public class Main {
         System.out.println("Livros da biblioteca: " + biblioteca.getLivros());
         System.out.println("Livros indisponíveis: " + biblioteca.getLivrosIndisponiveis());
         System.out.println("Livros disponíveis: " + biblioteca.getLivrosDisponiveis());
-
 
 //        adicionando no catálogo do fornecedor
         fornecedor.addLivroCatalogo(livro1);
@@ -77,13 +79,5 @@ public class Main {
         System.out.println("Status da compra: " + compra.getStatus() + '\n');
 
         System.out.println("Compras já realizadas pelo sistema: " + gerenciadorDeCompra.getHistoricoCompras().size());
-
-        emprestimo.addLivros(livro1);
-        emprestimo.addLivros(livro2);
-
-        System.out.println(gerenciadorDeEmprestimos.realizaEmprestimo(emprestimo, userEspecial));
-        System.out.println("Emprestimos já realizados: " + gerenciadorDeEmprestimos.getEmprestimos());
-        //alteramos a disponibilidade, mas ainda temos que adicionar em na classe emprestimo uma lista de livros que já estão emprestados e modificar a lista já existente para o nome de carrinho de compra
-        //devemos limpar essa lista toda as vezes que finalizarmos um emprestimo
     }
 }

@@ -1,5 +1,7 @@
 package Sistema;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -7,16 +9,16 @@ public class Emprestimo {
     private static AtomicInteger codGenerator = new AtomicInteger(1);
     private int id;
     private final ArrayList<Livro> livros;
-    private String dataEmprestimos;
-    private String dataDevolucao;
+    private LocalDate dataEmprestimo;
+    private LocalDate dataDevolucao;
+    private LocalDate dataDevolvida;
     private boolean status;
     private String descricao;
-    private String dataDevolucaoReal;
 
     public Emprestimo(String dataEmprestimos, String descricao) {
         this.id = codGenerator.getAndIncrement();
         livros = new ArrayList<Livro>();
-        this.setDataEmprestimos(dataEmprestimos);
+        this.setDataEmprestimo(dataEmprestimos);
         this.status = false;
         this.setDescricao(descricao);
     }
@@ -36,18 +38,46 @@ public class Emprestimo {
         return this.livros;
     }
 
-    public boolean setDataEmprestimos(String dataEmprestimos) {
-        if (!dataEmprestimos.isBlank()) {
-            this.dataEmprestimos = dataEmprestimos;
+    public boolean setDataEmprestimo(String dataDeRealizacaoEmprestimo) {
+        if (dataDeRealizacaoEmprestimo == null || dataDeRealizacaoEmprestimo.isBlank()) {
+            return false;
+        }
+
+        try {
+            this.dataEmprestimo = LocalDate.parse(dataDeRealizacaoEmprestimo);
             return true;
-        } else return false;
+        } catch (DateTimeParseException e) {
+            System.out.println("Erro ao realizar o parse da data informada: " + e.getMessage());
+            return false;
+        }
     }
 
     public boolean setDataDevolucao(String dataDevolucao) {
-        if (!dataDevolucao.isBlank()) {
-            this.dataDevolucao = dataDevolucao;
+        if (dataDevolucao == null || dataDevolucao.isBlank()) {
+            return false;
+        }
+
+        try {
+            this.dataDevolucao = LocalDate.parse(dataDevolucao);
             return true;
-        } else return false;
+        } catch (DateTimeParseException e) {
+            System.out.println("Erro ao realizar o parse da data informada: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean setDataDevolvida(String dataDevolvida) {
+        if (dataDevolvida == null || dataDevolvida.isBlank()) {
+            return false;
+        }
+
+        try {
+            this.dataDevolvida = LocalDate.parse(dataDevolvida);
+            return true;
+        } catch (DateTimeParseException e) {
+            System.out.println("Erro ao realizar o parse da data informada: " + e.getMessage());
+            return false;
+        }
     }
 
     public void setStatus(boolean status) {
@@ -61,18 +91,11 @@ public class Emprestimo {
         } else return false;
     }
 
-    public boolean setDataDevolucaoReal(String dataDevolucaoReal) {
-        if (!dataDevolucaoReal.isBlank()) {
-            this.dataDevolucaoReal = dataDevolucaoReal;
-            return true;
-        } else return false;
-    }
-
     public int getId() {
         return this.id;
     }
 
-    public String getDataDevolucao() {
+    public LocalDate getDataDevolucao() {
         return this.dataDevolucao;
     }
 
@@ -80,25 +103,25 @@ public class Emprestimo {
         return this.status;
     }
 
-    public String getDataEmprestimos() {
-        return this.dataEmprestimos;
+    public LocalDate getDataEmprestimo() {
+        return this.dataEmprestimo;
     }
 
     public String getDescricao() {
         return this.descricao;
     }
 
-    public String getDataDevolucaoReal() {
-        return this.dataDevolucaoReal;
+    public LocalDate getDataDevolvida() {
+        return this.dataDevolvida;
     }
 
     @Override
     public String toString() {
-        return "ID: " + id + "\n" +
-                "Data do Empréstimo: " + dataEmprestimos + "\n" +
+        return "ID: " + this.id + "\n" +
+                "Data do Empréstimo: " + this.dataEmprestimo + "\n" +
                 "Descrição: " + this.descricao + "\n" +
                 "Status: " + this.status + "\n" +
-                "Data de Devolução Real: " + this.dataDevolucaoReal + "\n";
+                "Data de Devolvida pelo cliente: " + this.dataDevolvida + "\n";
     }
 }
 

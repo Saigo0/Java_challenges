@@ -25,12 +25,11 @@ public class GerenciadorDeCompra {
         if (calculaSubTotalLivros(compra) > 0 && confirmacaoCompra) {
             if (verificaDisponibilidadeLivros(compra, fonecedor)) {
                 for (Livro livro : compra.getLivros()) {
-                    GerenciaLivros.tornarDisponivel(livro, Biblioteca.getInstancia());
                     Biblioteca.getInstancia().addLivros(livro);
+                    GerenciaLivros.tornarDisponivel(livro, Biblioteca.getInstancia());
                 }
                 compra.setStatus(true);
                 this.historicoCompras.add(compra);
-                //modificar a disponibilidade do livro chamando o método gerencia livro
                 System.out.println("Compra de livro's realizada com sucesso!");
                 return true;
             }
