@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Biblioteca {
     private static Biblioteca instanciaUnica;
     private static int cod = 1;
+    private final int VALOR_MULTA_POR_DIA = 2;
     private int id;
     private String nome;
     private String endereco;
@@ -192,6 +193,10 @@ public class Biblioteca {
 
     public ArrayList<Livro> getLivros() {
         return this.livros;
+    }
+
+    public int getVALOR_MULTA_POR_DIA() {
+        return VALOR_MULTA_POR_DIA;
     }
 
     public ArrayList<Livro> getLivrosDisponiveis() {

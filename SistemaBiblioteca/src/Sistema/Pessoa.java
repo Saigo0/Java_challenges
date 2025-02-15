@@ -11,12 +11,14 @@ public abstract class Pessoa {
     private String endereco = "";
     private String telefone = "";
     private final int LIMITE_LIVROS = 1;
+    private boolean multasPendentes;
 
     public Pessoa(String nome, String RG, String CPF, String dataNascimento, String email, String endereco, String telefone) {
         this.setNome(nome);
         this.setRG(RG);
         this.setCPF(CPF);
         this.setDataNascimento(dataNascimento);
+        this.setMultasPendentes(false);
     }
 
     public boolean setNome(String nome) {
@@ -71,6 +73,10 @@ public abstract class Pessoa {
             return false;
     }
 
+    public void setMultasPendentes(boolean multasPendentes) {
+        this.multasPendentes = multasPendentes;
+    }
+
     public String getNome() {
         return this.nome;
     }
@@ -101,6 +107,10 @@ public abstract class Pessoa {
 
     public int getLimiteLivros() {
         return this.LIMITE_LIVROS;
+    }
+
+    public boolean getMultasPendentes() {
+        return this.multasPendentes;
     }
 
     @Override

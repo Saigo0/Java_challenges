@@ -107,12 +107,12 @@ public class Emprestimo {
         return this.dataEmprestimo;
     }
 
-    public String getDescricao() {
-        return this.descricao;
-    }
-
     public LocalDate getDataDevolvida() {
         return this.dataDevolvida;
+    }
+
+    public String getDescricao() {
+        return this.descricao;
     }
 
     @Override

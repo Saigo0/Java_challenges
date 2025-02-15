@@ -2,6 +2,7 @@ package Sistema;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class GerenciadorDeEmprestimos {
@@ -25,7 +26,22 @@ public class GerenciadorDeEmprestimos {
 
     private boolean realizaEmprestimoUsuarioEspecial(Emprestimo emprestimo, UsuarioEspecial usuarioEspecial) {
         CategoriasUsuarioEspecial nivelBeneficio = usuarioEspecial.getNivelBeneficio();
-        if (nivelBeneficio == null || emprestimo.getLivros().isEmpty()) {
+        if (nivelBeneficio == null) {
+            throw new IllegalArgumentException("O nível do benefício está nulo!");
+        }
+
+        if (emprestimo.getLivros().isEmpty()) {
+            System.out.println("A lista de livros associada ao emprestimo está vazia!");
+            return false;
+        }
+
+        if (emprestimo.getStatus()) {
+            System.out.println("Erro ao realizar o emprestimo, tendo em vista que ele já está ativo!");
+            return false;
+        }
+
+        if (usuarioEspecial.getMultasPendentes()) {
+            System.out.println("O respectivo cliente tem multas abertas associadas à conta!");
             return false;
         }
 
@@ -53,6 +69,16 @@ public class GerenciadorDeEmprestimos {
             return false;
         }
 
+        if (emprestimo.getStatus()) {
+            System.out.println("Erro ao realizar o emprestimo, tendo em vista que ele já está ativo!");
+            return false;
+        }
+
+        if (pessoa.getMultasPendentes()) {
+            System.out.println("O respectivo cliente tem multas abertas associadas à conta!");
+            return false;
+        }
+
         if (emprestimo.getLivros().size() > pessoa.getLimiteLivros()) {
             System.out.println("Emprestimo negado! O limite de livros foi atingido!");
             return false;
@@ -74,9 +100,8 @@ public class GerenciadorDeEmprestimos {
 
     public boolean devolveEmprestimo(Emprestimo emprestimo, Pessoa pessoa) {
         if (pessoa instanceof UsuarioEspecial usuarioEspecial) {
-            //verificar a data de devolução, calcular multa, se possível, tornar os livros disponíveis, mudar o status do emprestimo para false, setar a dataDevolvida
             if (!emprestimo.getStatus()) {
-                System.out.println("Erro ao realizar a devolução, posto que o empréstimo se encontra indisponível. (Status false)");
+                System.out.println("Erro ao realizar a devolução, posto que o empréstimo se encontra indisponível ou não foi realizado. (Status false)");
                 return false;
             }
 
@@ -92,13 +117,13 @@ public class GerenciadorDeEmprestimos {
             emprestimo.setDataDevolvida(String.valueOf(LocalDate.now()));
 
             if (calculaMultaEmprestimo(emprestimo, usuarioEspecial) > 0) {
-//                chamar o método de calcular multa
-//            if (caso tenha multas, informar ao usuário com um system)
+                usuarioEspecial.setMultasPendentes(true);
+                System.out.println("O atraso de " + ChronoUnit.DAYS.between(emprestimo.getDataDevolucao(), emprestimo.getDataDevolvida()) + " dias configurou uma multa que estará associada ao seu cadastro na biblioteca!");
+                System.out.println("O valor da multa foi de : " + calculaMultaEmprestimo(emprestimo, usuarioEspecial));
             }
-
             emprestimo.setStatus(false);
             historicoEmprestimosDevolvidos.add(emprestimo);
-            System.out.println("Emprestimo devolvido com sucesso!");
+            System.out.println("Devolução do empréstimo realizado com sucesso!");
             return true;
         } else {
 //            pessoas que não são os userEspeciais
@@ -119,13 +144,13 @@ public class GerenciadorDeEmprestimos {
             emprestimo.setDataDevolvida(String.valueOf(LocalDate.now()));
 
             if (calculaMultaEmprestimo(emprestimo, pessoa) > 0) {
-//            if (caso tenha multas, informar ao usuário com um system)
-                //chamar o método de calcular multa
+                pessoa.setMultasPendentes(true);
+                System.out.println("O atraso de " + ChronoUnit.DAYS.between(emprestimo.getDataDevolucao(), emprestimo.getDataDevolvida()) + " dias configurou uma multa que estará associada ao seu cadastro na biblioteca!");
+                System.out.println("O valor da multa foi de : " + calculaMultaEmprestimo(emprestimo, pessoa));
             }
-
             emprestimo.setStatus(false);
             historicoEmprestimosDevolvidos.add(emprestimo);
-            System.out.println("Emprestimo devolvido com sucesso!");
+            System.out.println("Devolução do empréstimo realizado com sucesso!");
             return true;
         }
     }
@@ -135,7 +160,11 @@ public class GerenciadorDeEmprestimos {
 
         for (Livro livro : livrosEmprestimo) {
             if (!biblioteca.getLivros().contains(livro)) {
-                //Tratar, futuramente, com as exeções
+                System.out.println("O livro de nome: " + livro.getTitulo() + " não pertence à biblioteca!");
+                return false;
+            }
+            if (!livro.getDisponibilidade()) {
+                System.out.println("O livro de nome: " + livro.getTitulo() + " está indisponível!");
                 return false;
             }
         }
@@ -158,8 +187,14 @@ public class GerenciadorDeEmprestimos {
 
     private double calculaMultaEmprestimo(Emprestimo emprestimo, Pessoa pessoa) {
         if (emprestimo.getDataDevolucao().isBefore(emprestimo.getDataDevolvida())) {
-
-        } return 0;
+            long diasAtraso = ChronoUnit.DAYS.between(emprestimo.getDataDevolucao(), emprestimo.getDataDevolvida());
+            if (pessoa instanceof UsuarioEspecial usuarioEspecial) {
+                return (Biblioteca.getInstancia().getVALOR_MULTA_POR_DIA() * diasAtraso) * usuarioEspecial.getNivelBeneficio().getPORCENTAGEM_MULTA();
+            } else {
+                return Biblioteca.getInstancia().getVALOR_MULTA_POR_DIA() * diasAtraso;
+            }
+        }
+        return 0;
     }
 
     public ArrayList<Emprestimo> getHistoricoEmprestimosRealizados() {

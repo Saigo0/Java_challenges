@@ -14,8 +14,8 @@ public class GerenciadorDeCompra {
 
     public boolean realizaPedidoDeCompra(Compra compra, Fornecedor fornecedor, boolean confirmacaoCompra) {
         if (compra.getLivros() != null && compra.getEquipamentos() != null) {
-            realizaPedidoCompraLivro(compra, fornecedor, true);
-            realizaPedidoCompraEquipamento(compra, fornecedor, true);
+            realizaPedidoCompraLivro(compra, fornecedor, confirmacaoCompra);
+            realizaPedidoCompraEquipamento(compra, fornecedor, confirmacaoCompra);
             return true;
         }
         return false;
@@ -30,7 +30,7 @@ public class GerenciadorDeCompra {
                 }
                 compra.setStatus(true);
                 this.historicoCompras.add(compra);
-                System.out.println("Compra de livro's realizada com sucesso!");
+                System.out.println("Compra de livro's no valor de " + calculaSubTotalLivros(compra) + " reais, realizada com sucesso!");
                 return true;
             }
             return false;
@@ -47,7 +47,7 @@ public class GerenciadorDeCompra {
                 }
                 compra.setStatus(true);
                 this.historicoCompras.add(compra);
-                System.out.println("Compra de equipamento's realizada com sucesso!");
+                System.out.println("Compra de equipamento's no valor de " + calculaSubTotalEquipamentos(compra) +" reais, realizada com sucesso!");
                 return true;
             }
             return false;
