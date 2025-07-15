@@ -6,9 +6,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class GerenciadorDeEmprestimos {
+
     private final Biblioteca biblioteca;
     private final ArrayList<Emprestimo> historicoEmprestimosRealizados;
     private final ArrayList<Emprestimo> historicoEmprestimosDevolvidos;
+
+
 
     public GerenciadorDeEmprestimos() {
         this.biblioteca = Biblioteca.getInstancia();

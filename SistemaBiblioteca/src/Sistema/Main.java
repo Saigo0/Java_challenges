@@ -13,7 +13,7 @@ public class Main {
         GerenciadorDeCompra gerenciadorDeCompra = new GerenciadorDeCompra();
 
 //        Criando instâncias de representações
-        Emprestimo emprestimoDoHelio = new Emprestimo("2024-02-14","Emprestimo realizado com sucesso e sem falhas do sistema");
+        Emprestimo emprestimoDoHelio = new Emprestimo("2024-12-14","Emprestimo realizado com sucesso e sem falhas do sistema");
         Emprestimo emprestimoDaAndreia = new Emprestimo("2025-02-14","Emprestimo realizado com sucesso e sem falhas do sistema");
         Emprestimo emprestimoDoJonathan = new Emprestimo("2025-02-14","Emprestimo realizado com sucesso e sem falhas do sistema");
         Compra compra = new Compra();
@@ -29,10 +29,10 @@ public class Main {
         Livro livro1 = new Livro(1235, "O alienista", "Machado de Assis", 6, "Casa blanca", 1998, 207, "Rio de Janeiro", 25, 10);
         System.out.println("Disponibilidade livro 1: " + livro1.getDisponibilidade() + "\n");
 
-        Livro livro2 = new Livro(15151, "O pequeno príncepe", "Audos", 1, "blanca", 2001, 195, "Rio de Janeiro", 20, 20);
+        Livro livro2 = new Livro(15151, "O pequeno príncepe", "Audos", 5, "blanca", 2001, 195, "Rio de Janeiro", 20, 20);
         System.out.println("Disponibilidade livro 2: " + livro2.getDisponibilidade() + "\n");
 
-        Livro livro3 = new Livro(14141, "O Ladrão de casaca", "Audos", 1, "blanca", 2001, 195, "Rio de Janeiro", 20, 30);
+        Livro livro3 = new Livro(14141, "O Ladrão de casaca", "Audos", 3, "blanca", 2001, 195, "Rio de Janeiro", 20, 30);
         System.out.println("Disponibilidade livro 3: " + livro3.getDisponibilidade() + "\n");
 
         Equipamento equipamento1 = new Equipamento(4214, "Televisão", "11/12/2015", "Eletronico", "LG", "Bom", true, 1000);
